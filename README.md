@@ -7,8 +7,8 @@ Documentazione del corso
 # Risorse utili
 
 #### Aggiornamenti di Phaser
-https://phaser.world/
-https://discord.com/invite/phaser
+(https://phaser.world/)
+(https://discord.com/invite/phaser)
 
 #### Documentazione
 https://docs.phaser.io/phaser/getting-started/what-is-phaser
