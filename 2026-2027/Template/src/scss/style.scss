@@ -1,0 +1,39 @@
+
+$game-width: 1280px;
+$game-height: 800px;
+
+body.game {
+  margin: 0;
+  overflow: hidden;
+  background-color: #000000;
+
+  #my-game-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    #my-game {
+      width: 100%;
+      height: 100%;
+      max-width: $game-width;
+      max-height: $game-height;
+
+      canvas {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        max-width: $game-width;
+        max-height: $game-height;
+      }
+    }
+  }
+}
+
+body.playground {
+  background-color: #000000;
+  h1 { color: greenyellow; text-align: center; }
+  div { color: white; }
+}
