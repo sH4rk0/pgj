@@ -5,5 +5,14 @@ public/
 *.md
 dist/
 .claude/
-Games/
+bank/
+breakout/
+cialtroni/
+dungeon/
+mario/
+match/
+snowman-attack/
+tom/
+shaders/
+
 
