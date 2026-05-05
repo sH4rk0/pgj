@@ -46,6 +46,10 @@ window.addEventListener("load", () => {
     input: {
       activePointers: 2,
     },
+      render: {
+      pixelArt: true,
+      antialias: false,
+    },
   };
 
   //inizializziamo il gioco passando la configurazione

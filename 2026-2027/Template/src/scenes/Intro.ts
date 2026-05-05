@@ -20,6 +20,8 @@ export default class Intro extends Phaser.Scene {
     //setta il background di sfondo a bianco
     this.cameras.main.setBackgroundColor("#000000");
 
+    this.add.text(this.game.canvas.width / 2, this.game.canvas.height / 2 - 100, "Intro Scene", { fontSize: "40px", color: "#ffffff" }).setOrigin(0.5, 0.5).setFontFamily("Nosifer");
+
 
     this._image1 = this.add.image(this.game.canvas.width / 2, this.game.canvas.height / 2, "phaser4").setScale(.5)
 

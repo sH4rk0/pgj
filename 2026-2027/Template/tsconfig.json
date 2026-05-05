@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
-    "target": "es5",
+  
     "module": "commonjs",
     "strict": true,
     "noImplicitAny": true,
@@ -11,6 +10,7 @@
     "sourceMap": true,
     "strictPropertyInitialization": false,
     "typeRoots": ["node_modules/@types", "typings"],
+    "types": ["node"],
     "lib": ["dom", "es2015.promise", "es5"],
   }
 }
