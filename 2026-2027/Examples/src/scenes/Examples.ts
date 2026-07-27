@@ -23,5 +23,7 @@ export default class Examples extends Phaser.Scene {
 
   }
 
+ shutdown() {}
+
 
 }

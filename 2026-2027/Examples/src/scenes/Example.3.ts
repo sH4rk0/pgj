@@ -20,18 +20,50 @@ export default class Example3 extends Examples {
   }
 
 
-  create() {
+  create(): void {
 
 
-     this.cameras.main.setBackgroundColor("#ffffff");
+    this.cameras.main.setBackgroundColor("#ff0000");
 
-       this._tile1 = this.add.tileSprite(0, 0, 1280, 800 , "space").setOrigin(0);
+    // this._tile1 = this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
 
     this._image1 = this.add.image(150, 150, "logo-phaser");
-    this._image2 = this.add.image(150, 300, "logo-phaser").setAngle(45).setScale(.5);
-    this._image3 = this.add.image(150, 450, "logo-phaser").setAngle(45).setScale(.75).setTint(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
+    this._image2 = this.add.image(150, 330, "logo-phaser").setAngle(45).setScale(.5);
+    this._image3 = this.add.image(150, 510, "logo-phaser").setAngle(45).setScale(.75).setTint(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
 
-    this._image4 = this.add.image(450, 150, "logo-phaser")
+    this._image3 = this.add.image(150, 700, "logo-phaser").setScale(.75).setAlpha(1, 0, 0, 0);
+
+    this.add.image(850, 500, "logo-phaser-black").setBlendMode(Phaser.BlendModes.NORMAL).setScale(.75);
+    this.add.image(1100, 500, "logo-phaser-white").setBlendMode(Phaser.BlendModes.NORMAL).setScale(.75);
+
+    let _blendScreen=this.add.image(850, 650, "logo-phaser-black").setBlendMode(Phaser.BlendModes.SCREEN).setScale(.75);
+    let _blendMultiply=this.add.image(1100, 650, "logo-phaser-white").setBlendMode(Phaser.BlendModes.MULTIPLY).setScale(.75);
+
+    this.tweens.add({
+      targets: [_blendScreen],
+     
+      x: "+=125",
+    
+      duration: 4000,
+       
+      repeat: 0,
+    })  
+
+     this.tweens.add({
+      targets: [_blendMultiply],
+     
+      x: "-=125",
+    
+      duration: 4000,
+      
+      repeat: 0,
+    })  
+
+
+
+
+
+    this._image4 = this.add.image(450, 250, "logo-phaser")
       .setAngle(45)
       .setScale(.75)
       .setInteractive()
@@ -49,32 +81,33 @@ export default class Example3 extends Examples {
 
       })
 
+    this.add.text(450, 330, "roll over and click", { fontFamily: "Arial Black", fontSize: "24px", color: "#ffffff" }).setOrigin(.5)
 
 
-    this._image5 = this.add.image(450, 350, "logo-phaser")
+
+
+    this._image5 = this.add.image(450, 550, "logo-phaser")
       .setAngle(45)
       .setScale(1)
       .setInteractive()
-
-      .on("pointerover", () => { })
-      .on("pointerout", () => { })
       .on("pointerdown", () => {
 
         this._image5.destroy();
       })
 
+    this.add.text(450, 650, "Click to destroy!", { fontFamily: "Arial Black", fontSize: "24px", color: "#ffffff" }).setOrigin(.5)
 
 
-      this._image6 = this.add.image(850, 200, "logo").setScale(.25).setDepth(1);
-      this._image7 = this.add.image(875, 200, "logo-phaser");
-     
 
-   
+    this._image6 = this.add.image(980, 200, "logo").setScale(.25).setDepth(1);
+    this._image7 = this.add.image(875, 200, "logo-phaser");
 
 
-  }
 
-  
+
+}
+
+
 
   update(time: number, delta: number): void {
 

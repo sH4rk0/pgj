@@ -1,6 +1,6 @@
 import { GameData } from "../GameData";
 import WebFont from "webfontloader";
-import Example1 from "./Example.1";
+
 
 
 export default class Preloader extends Phaser.Scene {
@@ -70,9 +70,7 @@ export default class Preloader extends Phaser.Scene {
             //richiamiamo il metodo start della far partire la scena Intro
             this.scene.start("Menu");
             this.scene.start("Hud");
-           // this._example = <Examples>new Example1();
-            this.scene.add("Examples", Example1, false);
-            this.scene.start("Examples");
+       
             // porto in primo piano la hud e il menu
             this.scene.bringToTop("Hud");
              this.scene.bringToTop("Menu");

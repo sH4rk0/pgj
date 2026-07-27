@@ -16,6 +16,7 @@ export default class Example2 extends Examples {
   private _text9: Phaser.GameObjects.Text;
   private _text10: Phaser.GameObjects.BitmapText;
   private _counter: number = 0;
+  private _tile1: Phaser.GameObjects.TileSprite;
 
 
   constructor() {
@@ -25,23 +26,25 @@ export default class Example2 extends Examples {
 
   create() {
 
-    this._text1 = this.add.text(20, 50, "Shadow Stroke", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
+    this._tile1 = this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
+
+    this._text1 = this.add.text(20, 150, "Shadow Stroke", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
     this._text1.setStroke('#de77ae', 8);
     this._text1.setShadow(2, 2, '#333333', 2, true, false);
 
-    this._text2 = this.add.text(20, 180, "Shadow Fill", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
+    this._text2 = this.add.text(20, 280, "Shadow Fill", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
     this._text2.setStroke('#de77ae', 8);
     this._text2.setShadow(2, 2, "#333333", 2, false, true);
 
-    this._text3 = this.add.text(20, 310, "Shadow Both", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
+    this._text3 = this.add.text(20, 410, "Shadow Both", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
     this._text3.setStroke('#de77ae', 8);
     this._text3.setShadow(2, 2, "#333333", 2, true, true);
 
-    this._text4 = this.add.text(20, 440, "Shadow None", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
+    this._text4 = this.add.text(20, 540, "Shadow None", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
     this._text4.setStroke('#de77ae', 8);
     this._text4.setShadow(2, 2, "#333333", 2, false, false);
 
-    this._text5 = this.add.text(700, 80, "Interactive", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" })
+    this._text5 = this.add.text(700, 180, "Interactive", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" })
       .setInteractive()
       .setStroke('#de77ae', 8)
       .setOrigin(.5)
@@ -57,17 +60,20 @@ export default class Example2 extends Examples {
       })
 
 
-    this._text6 = this.add.text(700, 300, "HELLO " + new Date().getFullYear() + "!", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
+    this.add.text(700, 220, "roll over and click", { fontFamily: "Arial Black", fontSize: "24px", color: "#ffffff" }).setOrigin(.5)
+
+
+    this._text6 = this.add.text(700, 400, "HELLO " + new Date().getFullYear() + "!", { fontFamily: "Arial Black", fontSize: "44px", color: "#c51b7d" });
     this._text6.setStroke('#de77ae', 8).setShadow(2, 2, '#333333', 2, true, false).setOrigin(.5)
 
 
-    this._text7 = this.add.text(500, 500, "Raleway local TTF font", { fontFamily: "ralewayRegular", fontSize: "30px", color: "#c51b7d" });
+    this._text7 = this.add.text(500, 600, "Raleway local TTF font", { fontFamily: "ralewayRegular", fontSize: "30px", color: "#c51b7d" });
 
-    this._text8 = this.add.text(500, 550, "Nosifer web goole font", { fontFamily: "Nosifer", fontSize: "30px", color: "#c51b7d" });
+    this._text8 = this.add.text(500, 650, "Nosifer web goole font", { fontFamily: "Nosifer", fontSize: "30px", color: "#c51b7d" });
 
-    this._text9 = this.add.text(500, 600, "Press space google font", { fontFamily: "'Press Start 2P'", fontSize: "30px", color: "#c51b7d" });
+    this._text9 = this.add.text(500, 700, "Press space google font", { fontFamily: "'Press Start 2P'", fontSize: "30px", color: "#c51b7d" });
 
-    this._text10 = this.add.bitmapText(500, 650, "arcade", "bitmap text font", 30).setTint(0x00ff00);
+    this._text10 = this.add.bitmapText(500, 750, "arcade", "bitmap text font", 30).setTint(0x00ff00);
 
 
 

@@ -1,7 +1,7 @@
-import { GameData } from "../GameData";
+﻿import { GameData } from "../GameData";
 import Examples from "./Examples";
 
-export default class Example8 extends Examples {
+export default class Example22 extends Examples {
 
 
 
@@ -25,3 +25,5 @@ export default class Example8 extends Examples {
 
 
 }
+
+

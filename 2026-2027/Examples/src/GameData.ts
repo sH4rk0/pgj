@@ -57,6 +57,10 @@ export let GameData: gameData = {
 
     { name: "logo-phaser", path: "assets/images/logo-phaser.png" },
 
+        { name: "logo-phaser-green", path: "assets/images/logo-phaser-green.png" },
+        { name: "logo-phaser-white", path: "assets/images/logo-phaser-white.png" },
+         { name: "logo-phaser-black", path: "assets/images/logo-phaser-black.png" },
+
       { name: "logo", path: "assets/images/phaser.png" },
 
 
@@ -89,13 +93,11 @@ export let GameData: gameData = {
     }
   ],
   sounds: [
-    /*{
+    {
     name: "music",
-    paths: ["assets/sounds/intro.ogg", "assets/sounds/intro.m4a"],
-    volume: 1,
-    loop: true,
-    frame: 1,
-  }*/
+    paths: ["assets/sounds/music.ogg", "assets/sounds/music.m4a"],
+
+  }
   ],
 
   videos: [
@@ -105,12 +107,12 @@ export let GameData: gameData = {
   ],
   audios: [
 
-    /*{
+    {
     name: "sfx",
     jsonpath: "assets/sounds/sfx.json",
     paths: ["assets/sounds/sfx.ogg", "assets/sounds/sfx.m4a"],
-    instances: 10,
-  }*/
+    instance: { instance: 10 },
+  }
   ],
 
   scripts: [],

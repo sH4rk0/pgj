@@ -13,6 +13,7 @@ export default class Example1 extends Examples {
 
   create() {
 
+    console.log("Example 1 - TileSprite");
 
     this.bg=this.add.tileSprite(this.scale.width / 2, this.scale.height / 2, 1920, 1080, 'space');
     this.stars=this.add.tileSprite(this.scale.width / 2, this.scale.height / 2, 1920, 1080, 'stars');

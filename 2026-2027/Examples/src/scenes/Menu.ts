@@ -5,6 +5,38 @@ import Example4 from "./Example.4";
 import Example5 from "./Example.5";
 import Example6 from "./Example.6";
 import Example7 from "./Example.7";
+import Example8 from "./Example.8";
+import Example9 from "./Example.9";
+import Example10 from "./Example.10";
+import Example11 from "./Example.11";
+import Example12 from "./Example.12";
+import Example13 from "./Example.13";
+import Example14 from "./Example.14";
+import Example15 from "./Example.15";
+import Example16 from "./Example.16";
+import Example17 from "./Example.17";
+import Example18 from "./Example.18";
+import Example19 from "./Example.19";
+import Example20 from "./Example.20";
+import Example21 from "./Example.21";
+import Example22 from "./Example.22";
+import Example23 from "./Example.23";
+import Example24 from "./Example.24";
+import Example25 from "./Example.25";
+import Example26 from "./Example.26";
+import Example27 from "./Example.27";
+import Example28 from "./Example.28";
+import Example29 from "./Example.29";
+import Example30 from "./Example.30";
+import Example31 from "./Example.31";
+import Example32 from "./Example.32";
+import Example33 from "./Example.33";
+import Example34 from "./Example.34";
+import Example35 from "./Example.35";
+import Example36 from "./Example.36";
+import Example37 from "./Example.37";
+
+import Examples from "./Examples";
 
 
 export const GameOptions = {
@@ -30,6 +62,36 @@ export default class Menu extends Phaser.Scene {
         { name: "Example 5", type: Example5, title: "This is the fifth example" },
         { name: "Example 6", type: Example6, title: "This is the sixth example" },
         { name: "Example 7", type: Example7, title: "This is the seventh example" },
+        { name: "Example 8", type: Example8, title: "This is example 8" },
+        { name: "Example 9", type: Example9, title: "This is example 9" },
+        { name: "Example 10", type: Example10, title: "This is example 10" },
+        { name: "Example 11", type: Example11, title: "This is example 11" },
+        { name: "Example 12", type: Example12, title: "This is example 12" },
+        { name: "Example 13", type: Example13, title: "This is example 13" },
+        { name: "Example 14", type: Example14, title: "This is example 14" },
+        { name: "Example 15", type: Example15, title: "This is example 15" },
+        { name: "Example 16", type: Example16, title: "This is example 16" },
+        { name: "Example 17", type: Example17, title: "This is example 17" },
+        { name: "Example 18", type: Example18, title: "This is example 18" },
+        { name: "Example 19", type: Example19, title: "This is example 19" },
+        { name: "Example 20", type: Example20, title: "This is example 20" },
+        { name: "Example 21", type: Example21, title: "This is example 21" },
+        { name: "Example 22", type: Example22, title: "This is example 22" },
+        { name: "Example 23", type: Example23, title: "This is example 23" },
+        { name: "Example 24", type: Example24, title: "This is example 24" },
+        { name: "Example 25", type: Example25, title: "This is example 25" },
+        { name: "Example 26", type: Example26, title: "This is example 26" },
+        { name: "Example 27", type: Example27, title: "This is example 27" },
+        { name: "Example 28", type: Example28, title: "This is example 28" },
+        { name: "Example 29", type: Example29, title: "This is example 29" },
+        { name: "Example 30", type: Example30, title: "This is example 30" },
+        { name: "Example 31", type: Example31, title: "This is example 31" },
+        { name: "Example 32", type: Example32, title: "This is example 32" },
+        { name: "Example 33", type: Example33, title: "This is example 33" },
+        { name: "Example 34", type: Example34, title: "This is example 34" },
+        { name: "Example 35", type: Example35, title: "This is example 35" },
+        { name: "Example 36", type: Example36, title: "This is example 36" },
+        { name: "Example 37", type: Example37, title: "This is example 37" },
     ]
 
     private _container: Phaser.GameObjects.Container;
@@ -206,6 +268,8 @@ export default class Menu extends Phaser.Scene {
             if (!isNaN(exampleIndex)) {
                 this.loadExample(exampleIndex);
             }
+        }else{
+             this.loadExample(0);
         }
 
 
@@ -226,6 +290,14 @@ export default class Menu extends Phaser.Scene {
         this._menuText = this.add.text(130, 20, "Open Menu", { fontFamily: "'Press Start 2P'", fontSize: "16px", color: "#000000" }).setOrigin(.5, 0);
 
         this._menuContainer.add([_menuBg, _menuBtn, this._menuText]);
+
+
+        const hideMenu: boolean | null = <boolean | null><unknown>urlParams.get('hidemenu');
+           
+        if (hideMenu!== null  ) {
+           
+           this._menuContainer.setAlpha(0);
+        }
 
 
     }
@@ -276,6 +348,10 @@ export default class Menu extends Phaser.Scene {
         const example = this._examplesObj[index];
         if (!example) return;
 
+        let _exampleScene =<Examples> this.scene.get("Examples");
+        if (_exampleScene) {
+          _exampleScene.shutdown();
+        }
         this.scene.remove("Examples");
         this.scene.add("Examples", (example as any).type, true);
         this.scene.bringToTop(this);
