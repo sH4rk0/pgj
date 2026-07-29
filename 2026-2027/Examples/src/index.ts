@@ -6,6 +6,8 @@ import Hud from "./scenes/Hud";
 import Menu from "./scenes/Menu";
 import Examples from "./scenes/Examples";
 import Preloader from "./scenes/Preloader";
+import ExamplesScene from "./scenes/ExamplesScene"
+import ExamplesHUD from "./scenes/ExamplesHUD"
 
 //importiamo GameData che contiene i valori globali del gioco
 import { GameData } from "./GameData";
@@ -35,6 +37,8 @@ window.addEventListener("load", () => {
       Hud,
       Preloader,
       Menu,
+      ExamplesScene,
+      ExamplesHUD
     ],
     physics: {
       default: "arcade",

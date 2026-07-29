@@ -28,9 +28,23 @@ export default class Example10 extends Examples {
 
     //setta il background di sfondo a bianco
     this.cameras.main.setBackgroundColor("#ffffff");
-    this._tile1 = this.add.tileSprite(0, 0, 1024, 600, "nebula").setOrigin(0);
+    this._tile1 = this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
 
-    this._logo = this.add.image(512, 50, "logo").setScale(.3).setAlpha(0).setDepth(10);
+    this._logo = this.add.image(640, 50, "phaser-gamejam").setScale(.8).setAlpha(0).setDepth(10);
+
+
+const fx = this._logo.enableFilters().filters.internal.addColorMatrix().colorMatrix;
+
+        const tween = this.tweens.addCounter({
+            from: 0,
+            to: 360,
+            duration: 3000,
+            loop: -1,
+            onUpdate: () => {
+                fx.hue(tween.getValue());
+            }
+        });
+
 
     let _animation: Phaser.Types.Animations.Animation = {
       key: "bomb-rotation",
@@ -41,18 +55,16 @@ export default class Example10 extends Examples {
     };
     this.anims.create(_animation);
 
-    this._text1 = this.add.text(512, 350, "Play").setDepth(10).setAlpha(0).setOrigin(.5).setFontSize(40).setFontFamily("Roboto").setInteractive().on("pointerover", () => {
+    this._text1 = this.add.text(640, 500, "Play").setDepth(10).setAlpha(0).setOrigin(.5).setFontSize(40).setFontFamily("Roboto").setInteractive().on("pointerover", () => {
       this._text1.setTint(0xff0000);
       this.setBombsPosition(this._text1.x, this._text1.y)
     }).on("pointerout", () => {
       this._text1.clearTint();
     }).on("pointerdown", () => {
-      alert("Vai ad una nuova scena")
-      //this.scene.stop("Intro");
-      //this.scene.start("GamePlay");
+     //do something
     });
 
-    this._text2 = this.add.text(512, 450, "Credits").setDepth(10).setAlpha(0).setOrigin(.5).setFontSize(40).setFontFamily("Roboto").setInteractive()
+    this._text2 = this.add.text(640, 600, "Credits").setDepth(10).setAlpha(0).setOrigin(.5).setFontSize(40).setFontFamily("Roboto").setInteractive()
       .on("pointerover", () => {
         this._text2.setTint(0xff0000);
         this.setBombsPosition(this._text2.x, this._text2.y)
@@ -71,11 +83,11 @@ export default class Example10 extends Examples {
 
     //container code
     //--------------------------------------------------------
-    this._containerCredits = this.add.container(0, -50).setAlpha(0).setDepth(11);
-    let _layer = this.add.image(512, 300, "layer").setAlpha(.8)
-    let _popup = this.add.image(512, 300, "popup");
-    let _text = this.add.text(512, 150, "Credits").setOrigin(.5).setFontFamily("Roboto").setFontSize(40);
-    this._close = this.add.text(512, 450, "Chiudi").setOrigin(.5).setFontFamily("Roboto").setFontSize(30)
+    this._containerCredits = this.add.container(0, 0).setAlpha(0).setDepth(11);
+    let _layer = this.add.image(640, 400, "layer").setAlpha(.8)
+    let _popup = this.add.image(640, 400, "popup");
+    let _text = this.add.text(640, 280, "Credits").setOrigin(.5).setFontFamily("Roboto").setFontSize(40);
+    this._close = this.add.text(640, 550, "Chiudi").setOrigin(.5).setFontFamily("Roboto").setFontSize(30)
       .on("pointerover", () => {
         this._close.setTint(0xff0000);
       })
@@ -85,13 +97,13 @@ export default class Example10 extends Examples {
       .on("pointerdown", () => {
         this.hideCredits();
       })
-    let _text2 = this.add.text(512, 250, "Questo è un esempio di container per inserire alcune informazioni utili al gioco.\n\nE' possibile inserire del testo lungo e per evitare che esca dai bordi del popup usiamo il metodo setWordWrapWidth(700). \n\nNel container è possibile aggiungere qualunque gameObject.").setOrigin(.5).setFontFamily("Roboto").setFontSize(20).setWordWrapWidth(700);
+    let _text2 = this.add.text(640, 400, "This is an example of a container to insert some useful information for the game.\n\nIt is possible to insert long text and to prevent it from going out of the popup borders we use the setWordWrapWidth(700) method. \n\nAny gameObject can be added to the container.").setOrigin(.5).setFontFamily("Roboto").setFontSize(20).setWordWrapWidth(700);
     this._containerCredits.add([_layer, _popup, _text, _text2, this._close]);
 
     //codice del tween
     //---------------------------------------------------------------------------
     this.tweens.add({
-      targets: this._logo, alpha: 1, y: 150, duration: 1000, ease: "Sine.easeOut", onComplete: () => {
+      targets: this._logo, alpha: 1, y: 250, duration: 1000, ease: "Sine.easeOut", onComplete: () => {
 
         this.tweens.add({
           targets: this._logo, alpha: 1, y: "-=50", duration: 1500, ease: "Sine.easeInOut", yoyo: true, repeat: -1
@@ -116,7 +128,7 @@ export default class Example10 extends Examples {
       this._groupStars.add(_flare)
 
     }
-    let circle = new Phaser.Geom.Circle(512, 400, 100);
+    let circle = new Phaser.Geom.Circle(640, 550, 100);
 
     Phaser.Actions.PlaceOnCircle(this._groupStars.getChildren(), circle);
 
@@ -145,7 +157,7 @@ export default class Example10 extends Examples {
         });
       },
       onUpdate: () => {
-        Phaser.Actions.RotateAroundDistance(this._groupStars.getChildren(), { x: 512, y: 400 }, 0.02, circle.radius);
+       Phaser.Actions.RotateAroundDistance(this._groupStars.getChildren(), { x: 640, y: 550 }, 0.02, circle.radius);
       }
     });
 

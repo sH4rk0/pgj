@@ -3,20 +3,14 @@ import Examples from "./Examples";
 
 export default class Example7 extends Examples {
 
- private _containerCredits: Phaser.GameObjects.Container;
-
+  private _containerCredits: Phaser.GameObjects.Container;
   private _tile1: Phaser.GameObjects.TileSprite;
-
-
   private _bomb1: Phaser.GameObjects.Sprite;
   private _bomb2: Phaser.GameObjects.Sprite;
-
   private _text1: Phaser.GameObjects.Text;
   private _text2: Phaser.GameObjects.Text;
 
 
-  private _counter: number = 0;
-  private _clicked: boolean = false;
 
   constructor() {
     super();
@@ -30,18 +24,18 @@ export default class Example7 extends Examples {
     this.cameras.main.setBackgroundColor("#ffffff");
     this._tile1 = this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
 
-   
+
 
     if (!this.anims.exists("bomb-rotation")) {
-    let _animation: Phaser.Types.Animations.Animation = {
-      key: "bomb-rotation",
-      frames: this.anims.generateFrameNumbers("bomb", { frames: [0, 1, 2, 3, 4, 5] }),
-      frameRate: 10,
-      yoyo: false,
-      repeat: -1
-    };
-    this.anims.create(_animation);
-  }
+      let _animation: Phaser.Types.Animations.Animation = {
+        key: "bomb-rotation",
+        frames: this.anims.generateFrameNumbers("bomb", { frames: [0, 1, 2, 3, 4, 5] }),
+        frameRate: 10,
+        yoyo: false,
+        repeat: -1
+      };
+      this.anims.create(_animation);
+    }
 
     this._text1 = this.add.text(640, 300, "Play").setOrigin(.5).setFontSize(40).setFontFamily("Roboto").setInteractive().on("pointerover", () => {
       this._text1.setTint(0xff0000);
@@ -49,8 +43,8 @@ export default class Example7 extends Examples {
     }).on("pointerout", () => {
       this._text1.clearTint();
     }).on("pointerdown", () => {
-      //this.scene.stop("Intro");
-      alert("Vai ad una nuova scena");
+      
+     //do something
     });
 
     this._text2 = this.add.text(640, 400, "Credits").setOrigin(.5).setFontSize(40).setFontFamily("Roboto").setInteractive()
@@ -75,14 +69,14 @@ export default class Example7 extends Examples {
     this._containerCredits = this.add.container().setAlpha(0);
     let _layer = this.add.image(640, 400, "layer").setAlpha(.8)
     let _popup = this.add.image(640, 400, "popup");
-    let _text = this.add.text(640, 250, "Credits").setOrigin(.5).setFontFamily("Roboto").setFontSize(40);
-    let _chiudi = this.add.text(640, 550, "Close").setOrigin(.5).setFontFamily("Roboto").setFontSize(30).setInteractive().on("pointerdown", () => {
+    let _text = this.add.text(640, 270, "Credits").setOrigin(.5).setFontFamily("Roboto").setFontSize(40);
+    let _close = this.add.text(640, 550, "Close").setOrigin(.5).setFontFamily("Roboto").setFontSize(30).setInteractive().on("pointerdown", () => {
       this._containerCredits.setAlpha(0);
       this._text1.setInteractive();
       this._text2.setInteractive();
     })
-    let _text2 = this.add.text(640, 350, "This is an example of a container to insert some useful information for the game.\n\nIt is possible to insert long text and to prevent it from going out of the popup borders we use the setWordWrapWidth(700) method. \n\nAny gameObject can be added to the container.").setOrigin(.5).setFontFamily("Roboto").setFontSize(20).setWordWrapWidth(700);
-    this._containerCredits.add([_layer, _popup, _text, _text2, _chiudi]);
+    let _text2 = this.add.text(640, 400, "This is an example of a container to insert some useful information for the game.\n\nIt is possible to insert long text and to prevent it from going out of the popup borders we use the setWordWrapWidth(700) method. \n\nAny gameObject can be added to the container.").setOrigin(.5).setFontFamily("Roboto").setFontSize(20).setWordWrapWidth(700);
+    this._containerCredits.add([_layer, _popup, _text, _text2, _close]);
 
   }
 

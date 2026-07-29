@@ -21,18 +21,20 @@ export default class Example6 extends Examples {
 
     //setta il background di sfondo a bianco
     this.cameras.main.setBackgroundColor("#ffffff");
-    this._tile1 = this.add.tileSprite(0, 0, 1280, 800 , "space").setOrigin(0);
+    this._tile1 = this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
+
+    this.add.text(640, 100, "Click to remove an element from the group!").setOrigin(.5).setFontSize(30);
 
     if (!this.anims.exists("bomb-rotation")) {
-    let _animation: Phaser.Types.Animations.Animation = {
-      key: "bomb-rotation",
-      frames: this.anims.generateFrameNumbers("bomb", { frames: [0, 1, 2, 3, 4, 5] }),
-      frameRate: 10,
-      yoyo: false,
-      repeat: -1
-    };
-    this.anims.create(_animation);
-  }
+      let _animation: Phaser.Types.Animations.Animation = {
+        key: "bomb-rotation",
+        frames: this.anims.generateFrameNumbers("bomb", { frames: [0, 1, 2, 3, 4, 5] }),
+        frameRate: 10,
+        yoyo: false,
+        repeat: -1
+      };
+      this.anims.create(_animation);
+    }
 
 
 
@@ -58,12 +60,12 @@ export default class Example6 extends Examples {
       this.anims.create(_animation4);
     }
 
-    this._text1 = this.add.text(10, 10, 'bombs: ' + this._groupBomb.getLength()).setFontSize(40);
+    this._text1 = this.add.text(640, 740, 'bombs: ' + this._groupBomb.getLength()).setFontSize(40).setOrigin(.5);
     this.input.on("pointerdown", () => {
 
       let bomb: Phaser.GameObjects.Sprite = <Phaser.GameObjects.Sprite>Phaser.Utils.Array.RemoveRandomElement(this._groupBomb.getChildren());
 
-      if(this._groupBomb.getLength() === 0){
+      if (this._groupBomb.getLength() === 0) {
         this._text1.setText('No more bombs');
       } else {
         this._text1.setText('bombs: ' + (this._groupBomb.getLength() - 1));
@@ -86,12 +88,13 @@ export default class Example6 extends Examples {
 
     let _explo: Phaser.GameObjects.Sprite = this.add.sprite(x, y, "explosion");
     _explo.play("explosion-anim").on("animationcomplete", () => {
-     
+
       _explo.destroy();
 
     })
 
   }
+
 
   update(time: number, delta: number): void {
 

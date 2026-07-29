@@ -3,7 +3,7 @@ export let GameData: gameData = {
     gameWidth: 1280,
     gameHeight: 800,
     bgColor: "#ffffff",
-    debug: false
+    debug: true
   },
 
   preloader: {
@@ -16,7 +16,7 @@ export let GameData: gameData = {
     loadingTextComplete: "Tap/click to view the example",
     loadingTextY: 700,
     loadingBarColor: 0xff0000,
-    loadingBarY: 630,
+    loadingBarY: 640,
   },
 
   spritesheets: [
@@ -51,21 +51,25 @@ export let GameData: gameData = {
       height: 31,
       frames: 6
     },
+    {
+      name: "menu-btn",
+      path: "assets/images/hud/menu.png",
+      width: 32,
+      height: 32,
+      frames: 2
+    },
 
   ],
   images: [
 
     { name: "logo-phaser", path: "assets/images/logo-phaser.png" },
-
-        { name: "logo-phaser-green", path: "assets/images/logo-phaser-green.png" },
-        { name: "logo-phaser-white", path: "assets/images/logo-phaser-white.png" },
-         { name: "logo-phaser-black", path: "assets/images/logo-phaser-black.png" },
-
-      { name: "logo", path: "assets/images/phaser.png" },
-
-
-   
-
+    { name: "thumb", path: "assets/images/hud/thumb.png" },
+    { name: "logo-phaser-green", path: "assets/images/logo-phaser-green.png" },
+    { name: "logo-phaser-white", path: "assets/images/logo-phaser-white.png" },
+    { name: "logo-phaser-black", path: "assets/images/logo-phaser-black.png" },
+    { name: "logo", path: "assets/images/phaser.png" },
+    { name: "github", path: "assets/images/hud/github.png" },
+    { name: "link", path: "assets/images/hud/link.png" },
     { name: "bg1", path: "assets/images/bg/1.png" },
     { name: "bg2", path: "assets/images/bg/2.png" },
     { name: "bg3", path: "assets/images/bg/3.png" },
@@ -73,20 +77,19 @@ export let GameData: gameData = {
     { name: "bg5", path: "assets/images/bg/5.png" },
     { name: "bg6", path: "assets/images/bg/6.png" },
     { name: "bg7", path: "assets/images/bg/7.png" },
-        { name: "space", path: "assets/images/nebula.jpg" },
- 
-   
-        { name: "popup", path: "assets/images/popup.png" },
+    { name: "space", path: "assets/images/nebula.jpg" },
+    { name: "popup", path: "assets/images/popup.png" },
+    { name: "pgj", path: "assets/images/pgj.png" },
+    { name: "stars", path: "assets/images/stars.png" },
+    { name: "phaser-gamejam", path: "assets/images/phaser-gamejam.png" },
+     { name: "grid", path: "assets/images/grid.png" },
 
-          { name: "pgj", path: "assets/images/pgj.png" },
-          { name:"stars", path: "assets/images/stars.png" },
-       
 
 
 
   ],
   atlas: [
-      {
+    {
       key: "flares",
       imagepath: "assets/images/flares.png",
       jsonpath: "assets/images/flares.json"
@@ -94,10 +97,10 @@ export let GameData: gameData = {
   ],
   sounds: [
     {
-    name: "music",
-    paths: ["assets/sounds/music.ogg", "assets/sounds/music.m4a"],
+      name: "music",
+      paths: ["assets/sounds/music.ogg", "assets/sounds/music.m4a"],
 
-  }
+    }
   ],
 
   videos: [
@@ -108,11 +111,11 @@ export let GameData: gameData = {
   audios: [
 
     {
-    name: "sfx",
-    jsonpath: "assets/sounds/sfx.json",
-    paths: ["assets/sounds/sfx.ogg", "assets/sounds/sfx.m4a"],
-    instance: { instance: 10 },
-  }
+      name: "sfx",
+      jsonpath: "assets/sounds/sfx.json",
+      paths: ["assets/sounds/sfx.ogg", "assets/sounds/sfx.m4a"],
+      instance: { instance: 10 },
+    }
   ],
 
   scripts: [],

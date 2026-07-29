@@ -15,7 +15,7 @@ export default class Example5 extends Examples {
   private _text1: Phaser.GameObjects.Text;
   private _sprite1: Phaser.GameObjects.Sprite;
   private _animations: Array<{ key: string, frames: Array<number>, frameRate: number, yoyo: boolean, repeat: number }> = [
-    { key: "player-running", frames: [0, 1, 2, 3, 4, 5, 6, 7], frameRate: 8, yoyo: false, repeat: -1 },
+    { key: "player-running", frames: [0, 1, 2, 3, 4, 5, 6, 7], frameRate:12, yoyo: false, repeat: -1 },
     { key: "player-idle", frames: [8, 9, 10, 11], frameRate: 8, yoyo: false, repeat: -1 }
   ];
 
@@ -32,15 +32,15 @@ export default class Example5 extends Examples {
 
     //setta il background di sfondo a bianco
     this.cameras.main.setBackgroundColor("#ffffff");
-    this._tile1 = this.add.tileSprite(0, 0, 1024, 450, "bg1").setOrigin(0);
-    this._tile2 = this.add.tileSprite(0, 0, 1024, 450, "bg2").setOrigin(0);
-    this._tile3 = this.add.tileSprite(0, 50, 1024, 450, "bg3").setOrigin(0);
-    this._tile4 = this.add.tileSprite(0, 50, 1024, 450, "bg4").setOrigin(0);
-    this._tile5 = this.add.tileSprite(0, 50, 1024, 450, "bg5").setOrigin(0);
-    this._tile6 = this.add.tileSprite(0, 50, 1024, 450, "bg6").setOrigin(0);
-    this._tile7 = this.add.tileSprite(0, 50, 1024, 450, "bg7").setOrigin(0);
+    this._tile1 = this.add.tileSprite(0, -200, 1280, 450, "bg1").setOrigin(0).setScale(2);
+    this._tile2 = this.add.tileSprite(0, -200, 1280, 450, "bg2").setOrigin(0).setScale(2);
+    this._tile3 = this.add.tileSprite(0, -150, 1280, 450, "bg3").setOrigin(0).setScale(2);
+    this._tile4 = this.add.tileSprite(0, -150, 1280, 450, "bg4").setOrigin(0).setScale(2);
+    this._tile5 = this.add.tileSprite(0, -150, 1280, 450, "bg5").setOrigin(0).setScale(2);
+    this._tile6 = this.add.tileSprite(0, -150, 1280, 450, "bg6").setOrigin(0).setScale(2);
+    this._tile7 = this.add.tileSprite(0, -100, 1280, 450, "bg7").setOrigin(0).setScale(2);
 
-    this._sprite1 = this.add.sprite(100, 420, "players");
+    this._sprite1 = this.add.sprite(100, 640, "players").setScale(2);
 
     this._animations.forEach(element => {
       if (!this.anims.exists(element.key)) {
@@ -70,7 +70,7 @@ export default class Example5 extends Examples {
 
     });
 
-    this._text1 = this.add.text(512, 300, "Click to Start!").setOrigin(.5).setFontSize(50);
+    this._text1 = this.add.text(640, 400, "Click to Start!").setOrigin(.5).setFontSize(50).setStroke("#000000",4);
 
   }
 
@@ -84,7 +84,7 @@ export default class Example5 extends Examples {
       this._tile4.tilePositionX += 0.8; //velocità alta
       this._tile5.tilePositionX += 0.8; //velocità alta
       this._tile6.tilePositionX += 0.9; //velocità alta
-      this._tile7.tilePositionX += 1; //velocità alta
+      this._tile7.tilePositionX += 2; //velocità alta
     }
 
 

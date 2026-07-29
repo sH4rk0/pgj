@@ -16,7 +16,7 @@ export default class Examples extends Phaser.Scene {
 
 
   create() {
-    console.log("Examples");
+
   }
 
   update(time: number, delta: number): void {

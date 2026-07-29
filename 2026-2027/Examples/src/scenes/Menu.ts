@@ -37,6 +37,8 @@ import Example36 from "./Example.36";
 import Example37 from "./Example.37";
 
 import Examples from "./Examples";
+import ExamplesHUD from "./ExamplesHUD";
+import ExamplesScene from "./ExamplesScene";
 
 
 export const GameOptions = {
@@ -54,51 +56,97 @@ export const GameOptions = {
 export default class Menu extends Phaser.Scene {
 
 
-    private _examplesObj: Array<{ name: string, type: any, title: string }> = [
-        { name: "Example 1", type: Example1, title: "This is the first example" },
-        { name: "Example 2", type: Example2, title: "This is the second example" },
-        { name: "Example 3", type: Example3, title: "This is the third example" },
-        { name: "Example 4", type: Example4, title: "This is the fourth example" },
-        { name: "Example 5", type: Example5, title: "This is the fifth example" },
-        { name: "Example 6", type: Example6, title: "This is the sixth example" },
-        { name: "Example 7", type: Example7, title: "This is the seventh example" },
-        { name: "Example 8", type: Example8, title: "This is example 8" },
-        { name: "Example 9", type: Example9, title: "This is example 9" },
-        { name: "Example 10", type: Example10, title: "This is example 10" },
-        { name: "Example 11", type: Example11, title: "This is example 11" },
-        { name: "Example 12", type: Example12, title: "This is example 12" },
-        { name: "Example 13", type: Example13, title: "This is example 13" },
-        { name: "Example 14", type: Example14, title: "This is example 14" },
-        { name: "Example 15", type: Example15, title: "This is example 15" },
-        { name: "Example 16", type: Example16, title: "This is example 16" },
-        { name: "Example 17", type: Example17, title: "This is example 17" },
-        { name: "Example 18", type: Example18, title: "This is example 18" },
-        { name: "Example 19", type: Example19, title: "This is example 19" },
-        { name: "Example 20", type: Example20, title: "This is example 20" },
-        { name: "Example 21", type: Example21, title: "This is example 21" },
-        { name: "Example 22", type: Example22, title: "This is example 22" },
-        { name: "Example 23", type: Example23, title: "This is example 23" },
-        { name: "Example 24", type: Example24, title: "This is example 24" },
-        { name: "Example 25", type: Example25, title: "This is example 25" },
-        { name: "Example 26", type: Example26, title: "This is example 26" },
-        { name: "Example 27", type: Example27, title: "This is example 27" },
-        { name: "Example 28", type: Example28, title: "This is example 28" },
-        { name: "Example 29", type: Example29, title: "This is example 29" },
-        { name: "Example 30", type: Example30, title: "This is example 30" },
-        { name: "Example 31", type: Example31, title: "This is example 31" },
-        { name: "Example 32", type: Example32, title: "This is example 32" },
-        { name: "Example 33", type: Example33, title: "This is example 33" },
-        { name: "Example 34", type: Example34, title: "This is example 34" },
-        { name: "Example 35", type: Example35, title: "This is example 35" },
-        { name: "Example 36", type: Example36, title: "This is example 36" },
-        { name: "Example 37", type: Example37, title: "This is example 37" },
+    private _examplesObj: Array<{ name: string, type: any, title: string, gitUrl: string, labsUrl: string }> = [
+        { name: "Home", type: Example1, title: "This is the first example", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.1.ts", labsUrl: "https://labs.phaser.io/" },
+
+        { name: "Texts", type: Example2, title: "This is the second example", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.2.ts", labsUrl: "https://labs.phaser.io/?path=game+objects%2Ftext" },
+
+        { name: "Images", type: Example3, title: "This is the third example", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.3.ts", labsUrl: "https://labs.phaser.io/?path=game+objects%2Fimages" },
+
+        { name: "Sprites", type: Example4, title: "This is the fourth example", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.4.ts", labsUrl: "https://labs.phaser.io/?path=game+objects%2Fsprites" },
+
+        { name: "TileSprites", type: Example5, title: "This is the fifth example", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.5.ts", labsUrl: "https://labs.phaser.io/?path=game+objects%2Ftile+sprite" },
+
+        { name: "Groups", type: Example6, title: "This is the sixth example", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.6.ts", labsUrl: "https://labs.phaser.io/?path=game+objects%2Fgroup" },
+
+        { name: "Containers", type: Example7, title: "This is the seventh example", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.7.ts", labsUrl: "https://labs.phaser.io/?path=game+objects%2Fcontainer" },
+
+        { name: "Empty", type: Example8, title: "This is example 8", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.8.ts", labsUrl: "" },
+
+        { name: "Tween", type: Example9, title: "This is example 9", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.9.ts", labsUrl: "https://labs.phaser.io/phaser4-index.html?path=tweens" },
+
+        { name: "Menu Plus", type: Example10, title: "This is example 10", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.10.ts", labsUrl: "" },
+
+        { name: "Audio", type: Example11, title: "This is example 11", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.11.ts", labsUrl: "https://labs.phaser.io/?path=audio" },
+
+        { name: "Time", type: Example12, title: "This is example 12", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.12.ts", labsUrl: "https://labs.phaser.io/?path=time" },
+
+        { name: "Timeline", type: Example13, title: "This is example 13", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.13.ts", labsUrl: "https://labs.phaser.io/?path=time%2Ftimeline" },
+
+        { name: "Scene com 1", type: Example14, title: "This is example 14", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.14.ts", labsUrl: "https://labs.phaser.io/?path=scenes" },
+
+        { name: "Scene com 2", type: Example15, title: "This is example 15", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.15.ts", labsUrl: "https://labs.phaser.io/?path=scenes" },
+
+        { name: "Scene com 3", type: Example16, title: "This is example 16", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.16.ts", labsUrl: "https://labs.phaser.io/?path=scenes" },
+
+        { name: "Hello camera", type: Example17, title: "This is example 17", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.17.ts", labsUrl: "https://labs.phaser.io/?path=camera" },
+
+        { name: "Camera ZOOM", type: Example18, title: "This is example 18", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.18.ts", labsUrl: "https://labs.phaser.io/?path=camera" },
+
+        { name: "Camera FLASH", type: Example19, title: "This is example 19", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.19.ts", labsUrl: "https://labs.phaser.io/?path=camera" },
+
+        { name: "Camera SHAKE", type: Example20, title: "This is example 20", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.20.ts", labsUrl: "https://labs.phaser.io/?path=camera" },
+
+        { name: "Camera FADE", type: Example21, title: "This is example 21", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.21.ts", labsUrl: "https://labs.phaser.io/?path=camera" },
+
+        { name: "Hello Physics", type: Example22, title: "This is example 22", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.22.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
+
+        { name: "Example 23", type: Example23, title: "This is example 23", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.23.ts", labsUrl: "" },
+
+        { name: "Example 24", type: Example24, title: "This is example 24", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.24.ts", labsUrl: "" },
+
+        { name: "Example 25", type: Example25, title: "This is example 25", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.25.ts", labsUrl: "" },
+
+        { name: "Example 26", type: Example26, title: "This is example 26", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.26.ts", labsUrl: "" },
+
+        { name: "Example 27", type: Example27, title: "This is example 27", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.27.ts", labsUrl: "" },
+
+        { name: "Example 28", type: Example28, title: "This is example 28", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.28.ts", labsUrl: "" },
+
+        { name: "Example 29", type: Example29, title: "This is example 29", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.29.ts", labsUrl: "" },
+
+        { name: "Example 30", type: Example30, title: "This is example 30", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.30.ts", labsUrl: "" },
+
+        { name: "Example 31", type: Example31, title: "This is example 31", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.31.ts", labsUrl: "" },
+
+        { name: "Example 32", type: Example32, title: "This is example 32", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.32.ts", labsUrl: "" },
+
+        { name: "Example 33", type: Example33, title: "This is example 33", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.33.ts", labsUrl: "" },
+
+        { name: "Example 34", type: Example34, title: "This is example 34", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.34.ts", labsUrl: "" },
+
+        { name: "Example 35", type: Example35, title: "This is example 35", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.35.ts", labsUrl: "" },
+
+        { name: "Example 36", type: Example36, title: "This is example 36", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.36.ts", labsUrl: "" },
+
+        { name: "Example 37", type: Example37, title: "This is example 37", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.37.ts", labsUrl: "" },
     ]
 
     private _container: Phaser.GameObjects.Container;
     private _containerPager: Phaser.GameObjects.Container;
     private _menuContainer: Phaser.GameObjects.Container;
     private _menuIsOpen: boolean = false;
-    private _menuText: Phaser.GameObjects.Text;
+    private _menuBtn: Phaser.GameObjects.Sprite;
+    private _gitUrl: Phaser.GameObjects.Image;
+    private _labUrl: Phaser.GameObjects.Image;
+
+    private _gitUrlString: string = "";
+    private _labUrlString: string = "";
+
+    private _pageText: Phaser.GameObjects.Text;
+    private isDragging: boolean = false;
+    private snapToPage: any;
+
 
     constructor() {
         super({
@@ -110,12 +158,50 @@ export default class Menu extends Phaser.Scene {
     create(): void {
 
 
-        let isDragging: boolean = false;
+        this.isDragging = false;
         this._menuIsOpen = false;
         const pageSelectors: PageSelector[] = [];
         let startX: number = 0;
         let startContainerX: number = 0;
         let currentPage: number = 0;
+
+        this._menuContainer = this.add.container(0, 0).setDepth(3);
+
+
+        let _menuBg = this.add.image(this.scale.width / 2, 0, "menu");
+
+        this._menuBtn = this.add.sprite(24, 24, "menu-btn").setOrigin(.5).setInteractive().on("pointerdown", () => {
+            this.toggleExamples();
+        }).on("pointerover", () => {
+            this._menuBtn.setTint(0xbbbbbb).setTintMode(Phaser.TintModes.FILL);
+        }).on("pointerout", () => {
+            this._menuBtn.clearTint();
+        });
+
+
+        this._gitUrl = this.add.image(1280 - 16 - 48, 24, "github").setOrigin(1, .5).setInteractive().on("pointerdown", () => {
+            if (this._gitUrlString == "") return;
+            this.openUrl(this._gitUrlString)
+
+
+        }).on("pointerover", () => {
+            if (this._gitUrlString == "") return;
+            this._gitUrl.setTint(0xbbbbbb).setTintMode(Phaser.TintModes.FILL);
+        }).on("pointerout", () => {
+            this._gitUrl.clearTint();
+        });
+
+        this._labUrl = this.add.image(1280 - 16, 24, "link").setOrigin(1, .5).setInteractive().on("pointerdown", () => {
+            if (this._labUrlString == "") return;
+            this.openUrl(this._labUrlString)
+        }).on("pointerover", () => {
+            if (this._labUrlString == "") return;
+            this._labUrl.setTint(0xbbbbbb).setTintMode(Phaser.TintModes.FILL);
+        }).on("pointerout", () => {
+            this._labUrl.clearTint();
+        });
+
+        this._menuContainer.add([_menuBg, this._menuBtn, this._gitUrl, this._labUrl]);
 
         const contentWidth: number = GameOptions.pages * this.scale.width;
         this._container = this.add.container(0, 0).setAlpha(0).setDepth(2);
@@ -124,12 +210,12 @@ export default class Menu extends Phaser.Scene {
         this._containerPager.add(bg);
 
 
-        const pageText: Phaser.GameObjects.Text = this.add.text(this.scale.width / 2, 16, 'Page 1 / ' + GameOptions.pages, {
+        this._pageText = this.add.text(this.scale.width / 2, 24, 'Page 1 / ' + GameOptions.pages, {
             font: '18px Arial',
             color: '#000000',
             align: 'center'
         });
-        pageText.setOrigin(0.5).setDepth(4);
+        this._pageText.setOrigin(0.5).setDepth(4).setVisible(false)
 
         const rowLength: number = GameOptions.thumbWidth * GameOptions.columns + GameOptions.spacing * (GameOptions.columns - 1);
         const columnHeight: number = GameOptions.thumbHeight * GameOptions.rows + GameOptions.spacing * (GameOptions.rows - 1);
@@ -145,7 +231,7 @@ export default class Menu extends Phaser.Scene {
                         _counter++;
                         const posX: number = k * this.scale.width + leftMargin + j * (GameOptions.thumbWidth + GameOptions.spacing);
                         const posY: number = topMargin + i * (GameOptions.thumbHeight + GameOptions.spacing);
-                        const thumb: LevelThumbnail = new LevelThumbnail(this, posX, posY, 'levelthumb', levelNumber + 1, k, this._examplesObj[levelNumber].name);
+                        const thumb: LevelThumbnail = new LevelThumbnail(this, posX, posY, 'thumb', levelNumber + 1, k, this._examplesObj[levelNumber].name);
                         this._container.add(thumb)
                         thumb.on('levelSelected', (level: number) => {
 
@@ -173,7 +259,7 @@ export default class Menu extends Phaser.Scene {
                     duration: 250,
                     ease: 'Cubic.easeOut',
                     onComplete: () => {
-                        snapToPage();
+                        this.snapToPage();
                     }
                 });
             });
@@ -183,14 +269,14 @@ export default class Menu extends Phaser.Scene {
 
         this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
             if (!this._menuIsOpen) return;
-            isDragging = true;
+            this.isDragging = true;
             startX = pointer.x;
             startContainerX = this._container.x;
         });
 
         this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
             if (!this._menuIsOpen) return;
-            if (isDragging) {
+            if (this.isDragging) {
                 const delta: number = pointer.x - startX;
                 this._container.x = Phaser.Math.Clamp(startContainerX + delta, this.scale.width - contentWidth, 0);
             }
@@ -198,18 +284,18 @@ export default class Menu extends Phaser.Scene {
 
         this.input.on('pointerup', () => {
             if (!this._menuIsOpen) return;
-            if (isDragging) {
+            if (this.isDragging) {
                 ;
-                isDragging = false;
-                snapToPage();
+                this.isDragging = false;
+                this.snapToPage();
             }
         });
 
         this.input.on('pointerupoutside', () => {
             if (!this._menuIsOpen) return;
-            if (isDragging) {
-                isDragging = false;
-                snapToPage();
+            if (this.isDragging) {
+                this.isDragging = false;
+                this.snapToPage();
             }
         });
 
@@ -217,8 +303,8 @@ export default class Menu extends Phaser.Scene {
             if (!this._menuIsOpen) return;
             const delta: number = (deltaX !== 0) ? deltaX : deltaY;
             if (delta != 0) {
-                if (isDragging) {
-                    isDragging = false;
+                if (this.isDragging) {
+                    this.isDragging = false;
                     startContainerX = this._container.x;
                 }
                 const direction: number = delta > 0 ? 1 : -1;
@@ -230,7 +316,7 @@ export default class Menu extends Phaser.Scene {
             }
         });
 
-        const snapToPage = (): void => {
+        this.snapToPage = (): void => {
             const delta: number = startContainerX - this._container.x;
             currentPage = Math.round(-this._container.x / this.scale.width);
             if (Math.abs(delta) > this.scale.width * GameOptions.threshold) {
@@ -253,7 +339,7 @@ export default class Menu extends Phaser.Scene {
                 duration: 250,
                 ease: 'Cubic.easeOut'
             });
-            pageText.setText('Page ' + (currentPage + 1).toString() + ' / ' + GameOptions.pages);
+            this._pageText.setText('Page ' + (currentPage + 1).toString() + ' / ' + GameOptions.pages);
             pageSelectors.forEach((selector) => {
                 selector.updateThumb(currentPage)
             })
@@ -268,38 +354,29 @@ export default class Menu extends Phaser.Scene {
             if (!isNaN(exampleIndex)) {
                 this.loadExample(exampleIndex);
             }
-        }else{
-             this.loadExample(0);
+        } else {
+            this.loadExample(0);
         }
 
 
-        this._menuContainer = this.add.container(0, 0).setDepth(3);
 
 
-        let _menuBg = this.add.image(this.scale.width / 2, 0, "menu");
 
-        let _menuBtn = this.add.image(130, 5, "menu-btn").setOrigin(0, 0).setInteractive().on("pointerdown", () => {
-            this.toggleExamples();
-        }).setOrigin(.5, 0).on("pointerover", () => {
-            _menuBtn.setTint(0xbbbbbb).setTintMode(Phaser.TintModes.FILL);
-        }).on("pointerout", () => {
-            _menuBtn.clearTint();
-        });
-
-
-        this._menuText = this.add.text(130, 20, "Open Menu", { fontFamily: "'Press Start 2P'", fontSize: "16px", color: "#000000" }).setOrigin(.5, 0);
-
-        this._menuContainer.add([_menuBg, _menuBtn, this._menuText]);
 
 
         const hideMenu: boolean | null = <boolean | null><unknown>urlParams.get('hidemenu');
-           
-        if (hideMenu!== null  ) {
-           
-           this._menuContainer.setAlpha(0);
+
+        if (hideMenu !== null) {
+
+            this._menuContainer.setAlpha(0);
         }
 
 
+    }
+
+    openUrl(url: string) {
+
+        window.open(url, "_Blank");
     }
 
 
@@ -318,7 +395,10 @@ export default class Menu extends Phaser.Scene {
 
         this._container.setAlpha(0);
         this._containerPager.setAlpha(0);
-        this._menuText.setText("Close Menu");
+        this._menuBtn.setFrame(1);
+        this._pageText.setVisible(true);
+        this.isDragging = false;
+
         this.tweens.add({
             targets: [this._container, this._containerPager],
             alpha: 1,
@@ -326,6 +406,7 @@ export default class Menu extends Phaser.Scene {
             ease: 'Cubic.easeOut',
             onComplete: () => {
                 this._menuIsOpen = true;
+
             }
         });
 
@@ -334,7 +415,10 @@ export default class Menu extends Phaser.Scene {
 
     hideExamples(): void {
         this._menuIsOpen = false;
-        this._menuText.setText("Open Menu");
+        this._menuBtn.setFrame(0);
+        this._pageText.setVisible(false);
+        this.isDragging = false;
+
         this.tweens.add({
             targets: [this._container, this._containerPager],
             alpha: 0,
@@ -345,16 +429,38 @@ export default class Menu extends Phaser.Scene {
 
 
     loadExample(index: number): void {
+
         const example = this._examplesObj[index];
+        //console.log(example)
+        this._gitUrlString = example.gitUrl;
+        if (this._gitUrlString == "") { this._gitUrl.setAlpha(.2).setInteractive(false); } else {
+            this._gitUrl.setAlpha(1).setInteractive(true);
+        }
+        this._labUrlString = example.labsUrl;
+        if (this._labUrlString == "") { this._labUrl.setAlpha(.2).setInteractive(false); } else {
+            this._labUrl.setAlpha(1).setInteractive(true);
+        }
+
+        this.snapToPage();
+        this.isDragging = false;
         if (!example) return;
 
-        let _exampleScene =<Examples> this.scene.get("Examples");
+        let _exampleScene = <Examples>this.scene.get("Examples");
         if (_exampleScene) {
-          _exampleScene.shutdown();
+            _exampleScene.shutdown();
         }
         this.scene.remove("Examples");
         this.scene.add("Examples", (example as any).type, true);
         this.scene.bringToTop(this);
+
+      
+        
+        if (example.name === "Scene com 3") {
+           
+            this.scene.remove("ExamplesHUD");
+            this.scene.add("ExamplesHUD", ExamplesHUD, true);
+            this.scene.bringToTop(this);
+        }
     }
 
 }
@@ -411,14 +517,14 @@ export class LevelThumbnail extends Phaser.GameObjects.Container {
         super(scene, x, y);
         scene.add.existing(this);
 
-        this.levelSprite = scene.add.sprite(0, 0, key);
+        this.levelSprite = scene.add.sprite(0, 0, key).setScale(.5);
 
-        this.levelSprite.setTint(GameOptions.tintColors[page % GameOptions.tintColors.length]);
+        //this.levelSprite.setTint(GameOptions.tintColors[page % GameOptions.tintColors.length]);
         this.add(this.levelSprite);
 
-        this.levelText = scene.add.text(0, - 14, title, {
-            font: '24px Arial',
-            color: '#000000'
+        this.levelText = scene.add.text(0, 70, title, {
+            font: '14px Arial',
+            color: '#ffffff'
         });
         this.levelText.setOrigin(0.5);
         this.add(this.levelText);

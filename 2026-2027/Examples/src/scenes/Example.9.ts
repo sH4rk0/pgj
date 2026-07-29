@@ -20,10 +20,11 @@ export default class Example9 extends Examples {
 
     //setta il background di sfondo a bianco
     this.cameras.main.setBackgroundColor("#000000");
-    this._text = this.add.text(512, 550, "").setFontSize(30).setOrigin(.5);
-    this._logo = this.add.image(512, 50, "logo").setAlpha(0).setScale(.8).setDepth(10);
-    this._bomb = this.add.image(512, 350, "bomb").setAlpha(0).setScale(2).setDepth(10).setInteractive().on("pointerdown", () => {
-      console.log(this._flareTween.paused)
+    this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
+    this._text = this.add.text(640, 550, "").setFontSize(30).setOrigin(.5);
+    this._logo = this.add.image(640, 50, "phaser-gamejam").setAlpha(0).setScale(.8).setDepth(10);
+    this._bomb = this.add.image(640, 350, "bomb").setAlpha(0).setScale(2).setDepth(10).setInteractive().on("pointerdown", () => {
+
       if (this._flareTween.paused) {
         this._flareTween.paused = false;
         this._flareTween.resume();
@@ -32,16 +33,20 @@ export default class Example9 extends Examples {
         this._flareTween.pause();
       }
 
-
-
+    }).on("pointerover",()=>{
+      this._bomb.setScale(2.3)
+    }).on("pointerout",()=>{
+      this._bomb.setScale(2)
     });
-    this._flare = this.add.image(100, 450, "flares").setAlpha(1).setScale(2).setDepth(10);
+
+
+
+    this._flare = this.add.image(100, 750, "flares").setAlpha(1).setScale(2).setDepth(10);
 
     this._flareTween = this.tweens.add({
       targets: this._flare,
-
       duration: 3000,
-      x: 924,
+      x: 1180,
       ease: "Sine.easeInOut",
       delay: 1000,
       yoyo: true,
@@ -52,7 +57,7 @@ export default class Example9 extends Examples {
       targets: this._logo,
       alpha: 1,
       duration: 3000,
-      y: 100,
+      y: 200,
       ease: "Sine.easeOut",
       delay: 1000,
       onStart: () => {
@@ -69,14 +74,15 @@ export default class Example9 extends Examples {
 
   }
 
-  
+
   bombAnimation() {
 
     this.tweens.add({
       targets: this._bomb,
       alpha: 1,
       duration: 3000,
-      scale: 4,
+      scale: 2,
+      y:400,
       ease: "Bounce.easeInOut",
       onStart: () => {
         this._text.setText("Start bomb animation").setTint(0xff0000)
@@ -84,7 +90,7 @@ export default class Example9 extends Examples {
       onComplete: () => {
 
         this._text.setText("Bomb animation completed").setTint(0x00ff00);
-        this.add.text(512, 570, "Click the bomb to pause animation").setFontSize(20).setOrigin(.5);
+        this.add.text(640, 470, "Click the bomb to pause flare tween").setFontSize(20).setOrigin(.5);
 
       }
     });
@@ -94,7 +100,8 @@ export default class Example9 extends Examples {
 
   update(time: number, delta: number): void {
 
-  
+    this._bomb.rotation+=.01;
+
 
   }
 

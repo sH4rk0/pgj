@@ -31,15 +31,11 @@ export default class Boot extends Phaser.Scene {
     _graphics.generateTexture("layer", 1280, 800);
     _graphics.clear();
 
-     _graphics.fillStyle(0xffffff, 1);
+    _graphics.fillStyle(0xffffff, 1);
     _graphics.fillRect(0, 0, 1280, 100);
     _graphics.generateTexture("menu", 1280, 100);
     _graphics.clear();
 
-     _graphics.fillStyle(0x999999, 1);
-    _graphics.fillRoundedRect(0, 0, 250, 40, 5);
-    _graphics.generateTexture("menu-btn", 250, 40);
-    _graphics.clear();
 
     //settiamo il colore di sfondo della scena
     this.cameras.main.setBackgroundColor("#ffffff");
