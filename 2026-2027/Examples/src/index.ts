@@ -47,6 +47,7 @@ window.addEventListener("load", () => {
 
     input: {
       activePointers: 2,
+      touch: { capture: false },
     },
       render: {
       pixelArt: false,

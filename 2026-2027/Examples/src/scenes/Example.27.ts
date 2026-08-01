@@ -33,12 +33,12 @@ export default class Example27 extends Examples {
     this.add.tileSprite(0, 800, 1280, 280, "moon").setOrigin(0, 1);
 
     this._toggledebug = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
- this.add.text(640, 200, "Press D to toggle debug.\nClick to release a bomb").setAlign("center").setFontFamily("Roboto").setColor("#ffffff").setStroke("#000000", 6).setFontSize(40).setScrollFactor(0).setOrigin(.5)
+    this.add.text(640, 200, "Press D to toggle debug.\nClick to release a bomb").setAlign("center").setFontFamily("Roboto").setColor("#ffffff").setStroke("#000000", 6).setFontSize(40).setScrollFactor(0).setOrigin(.5)
 
-    var cannonHead = this.add.image(640, 716-50, 'cannon-head').setDepth(1);
-    var cannon = this.add.image(640, 764-50, 'cannon-body').setDepth(1);
+    var cannonHead = this.add.image(640, 716 - 50, 'cannon-head').setDepth(1);
+    var cannon = this.add.image(640, 764 - 50, 'cannon-body').setDepth(1);
 
-    this._bombs = this.add.group({ runChildUpdate:true });
+    this._bombs = this.add.group({ runChildUpdate: true });
 
     this._gfx = this.add.graphics().setDefaultStyles({ lineStyle: { width: 10, color: 0xffdd00, alpha: 0.5 } });
     this._line = new Phaser.Geom.Line();
@@ -78,11 +78,13 @@ export default class Example27 extends Examples {
       bombBody.reset(cannon.x, cannon.y - 50);
       bombBody.enable = true;
       bombBody.setGravityY(300);
-      bomb.update=()=>{
-        
-       if(bombBody.velocity.y>0) {
-      
-        bomb.setDepth(2);}else{bomb.setDepth(0);
+      bomb.update = () => {
+
+        if (bombBody.velocity.y > 0) {
+
+          bomb.setDepth(2);
+        } else {
+          bomb.setDepth(0);
 
         }
       }

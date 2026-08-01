@@ -91,8 +91,11 @@ export default class Example32 extends Examples {
 
   //il metodo che viene richiamato quando c’è collisione tra player e la bomba
   hitEnemy(player: any, Enemy: any) {
-    this.removeEnemy(Enemy)
+
+    this.createExplosion(Enemy.x, Enemy.y);
+    this.removeEnemy(Enemy);
     this.resetGame();
+    
   }
 
   //metodo per aggiungere un bonus al gruppo
@@ -129,6 +132,31 @@ export default class Example32 extends Examples {
     }
   }
 
+
+  createExplosion(x: number, y: number) {
+
+    if (!this.anims.exists("explosion-anim")) {
+      let _animation4: Phaser.Types.Animations.Animation = {
+        key: "explosion-anim",
+        frames: this.anims.generateFrameNumbers("explosion", { frames: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27] }),
+        frameRate: 20,
+        yoyo: false,
+        repeat: 0,
+
+      };
+      this.anims.create(_animation4);
+    }
+    this.sound.playAudioSprite("sfx", "explo", { volume: .5, loop: false })
+    let _explo: Phaser.GameObjects.Sprite = this.add.sprite(x, y, "explosion").setDepth(10);
+    _explo.play("explosion-anim").on("animationcomplete", () => {
+
+      _explo.destroy();
+
+
+
+    })
+
+  }
 
   resetGame() {
 

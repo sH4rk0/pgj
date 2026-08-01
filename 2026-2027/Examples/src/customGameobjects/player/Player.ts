@@ -1,6 +1,7 @@
 import IPlayer from "./IPlayer";
 //Importiamo la scena di gameplay in modo da potervi accedere
 import Examples from "../../scenes/Examples";
+import nipplejs from 'nipplejs';
 
 export default class Player extends Phaser.GameObjects.Sprite implements IPlayer {
     private _config: genericConfig;
@@ -48,6 +49,37 @@ export default class Player extends Phaser.GameObjects.Sprite implements IPlayer
         this.setDepth(11);
         //Aggiungiamo il Player alla scena
         this._scene.add.existing(this);
+
+        if (this._scene.sys.game.device.input.touch) {
+
+            let joystickManager: any = nipplejs.create({ color: 'red' });
+            // possiamo eseguire del codice quando il virtual joystick inizia a muoversi
+            joystickManager.on('start', () => { })
+            // sull’ evento move eseguiamo il codice per il movimento
+            // nipplejs v1 passa un unico oggetto evento: evt.data contiene forza e angolo
+            joystickManager.on('move', (evt: any) => {
+                let output = evt.data;
+                if (!output || !output.angle) return;
+                // get the force and don't let it be greater than 1
+                let force: number = Math.min(output.force, 1);
+                // get the angle, in radians
+                let angle: number = output.angle.radian;
+                // determine the speed, according to force and player speed
+                // this._acceleration è un valore arbitrario Es: 200
+                let speed: number = 200 * force;
+                // set player velocity using trigonometry
+                // this.setVelocity è riferito al body del nostro personaggio
+                this._body.setVelocity(speed * Math.cos(angle), speed * Math.sin(angle) * -1);
+                this.anims.play('move', true);
+            });
+            // possiamo eseguire del codice quando il virtual joystick smette di muoversi
+            joystickManager.on('end', () => {
+                this.anims.play('idle', true);
+                this._body.setVelocity(0);
+            });
+
+
+        }
     }
 
     createAnimations() {
@@ -66,49 +98,54 @@ export default class Player extends Phaser.GameObjects.Sprite implements IPlayer
                 this._scene.anims.create(_animation);
             }
         });
+
+        this.anims.play('idle', true);
     }
 
     update(time: number, delta: number) {
         this.setDepth(this.y);
-        //se il il cursore sinistro è premuto
-        if (this._cursors.left.isDown) {
-            //gira il PLAYER nella posizione iniziale, quella definita nello spritesheet
-            this.setFlipX(false);
-            //effettua il play dell'animazione
-            this.anims.play('move', true);
-            //setta la velocità x in modo da far muovere il player
-            this._body.setVelocityX(-this._velocity);
-        }
-        //se il il cursore destro è premuto
-        if (this._cursors.right.isDown) {
-            //gira il PLAYER in direzione opposta da quella definita nello spritesheet
-            this.setFlipX(true);
-            //effettua il play dell'animazione
-            this.anims.play('move', true);
-            //setta la velocità x in modo da far muovere il player
-            this._body.setVelocityX(this._velocity);
-        }
 
-        //se il il cursore in alto è premuto
-        if (this._cursors.up.isDown) {
-            //effettua il play dell'animazione
-            this.anims.play('move', true);
-            //setta la velocità x in modo da far muovere il player
-            this._body.setVelocityY(-this._velocity);
-        }
-        //se il il cursore in basso è premuto
-        if (this._cursors.down.isDown) {
-            //effettua il play dell'animazione
-            this.anims.play('move', true);
-            //setta la velocità x in modo da far muovere il player
-            this._body.setVelocityY(this._velocity);
-        }
+        if (!this._scene.sys.game.device.input.touch) {
+            //se il il cursore sinistro è premuto
+            if (this._cursors.left.isDown) {
+                //gira il PLAYER nella posizione iniziale, quella definita nello spritesheet
+                this.setFlipX(false);
+                //effettua il play dell'animazione
+                this.anims.play('move', true);
+                //setta la velocità x in modo da far muovere il player
+                this._body.setVelocityX(-this._velocity);
+            }
+            //se il il cursore destro è premuto
+            if (this._cursors.right.isDown) {
+                //gira il PLAYER in direzione opposta da quella definita nello spritesheet
+                this.setFlipX(true);
+                //effettua il play dell'animazione
+                this.anims.play('move', true);
+                //setta la velocità x in modo da far muovere il player
+                this._body.setVelocityX(this._velocity);
+            }
 
-        if (!this._cursors.left.isDown && !this._cursors.right.isDown && !this._cursors.up.isDown && !this._cursors.down.isDown) {
-            //setta la velocità x a 0 in modo da far fermare il PLAYER
-            this._body.setVelocity(0);
-            //effettua il play dell'animazione di pausa
-            this.anims.play('idle', true);
+            //se il il cursore in alto è premuto
+            if (this._cursors.up.isDown) {
+                //effettua il play dell'animazione
+                this.anims.play('move', true);
+                //setta la velocità x in modo da far muovere il player
+                this._body.setVelocityY(-this._velocity);
+            }
+            //se il il cursore in basso è premuto
+            if (this._cursors.down.isDown) {
+                //effettua il play dell'animazione
+                this.anims.play('move', true);
+                //setta la velocità x in modo da far muovere il player
+                this._body.setVelocityY(this._velocity);
+            }
+
+            if (!this._cursors.left.isDown && !this._cursors.right.isDown && !this._cursors.up.isDown && !this._cursors.down.isDown) {
+                //setta la velocità x a 0 in modo da far fermare il PLAYER
+                this._body.setVelocity(0);
+                //effettua il play dell'animazione di pausa
+                this.anims.play('idle', true);
+            }
         }
     }
 
