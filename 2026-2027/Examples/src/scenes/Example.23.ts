@@ -5,6 +5,8 @@ export default class Example23 extends Examples {
 
 
   private _bombs: Phaser.GameObjects.Group;
+  private _toggledebug: Phaser.Input.Keyboard.Key;
+
   constructor() {
     super();
   }
@@ -12,14 +14,18 @@ export default class Example23 extends Examples {
 
   create() {
 
-  
+
 
     this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
+    this.add.text(640, 200, "Press D to toggle debug.\nThe body is randomly set to circle.").setAlign("center").setFontFamily("Roboto").setColor("#ffffff").setStroke("#000000", 6).setFontSize(40).setScrollFactor(0).setOrigin(.5)
+
+
 
 
     this._bombs = this.add.group({ runChildUpdate: true })
     this.time.addEvent({ delay: 1000, callback: this.generateBomb, callbackScope: this, loop: true })
 
+    this._toggledebug = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
 
   }
@@ -34,13 +40,16 @@ export default class Example23 extends Examples {
     _body.setGravityY(400);
     _body.setVelocityY(-300).setVelocityX(Phaser.Math.RND.integerInRange(-200, 200));
     this._bombs.add(_sprite)
-   
-    if(Phaser.Math.RND.integerInRange(0,1)){
+
+    if (Phaser.Math.RND.integerInRange(0, 1)) {
       _body.setCircle(10).setOffset(6, 6);
     }
 
-    _sprite.update = () => {
-      if (_sprite.y > 800) { this.createExplosion(_sprite.x, _sprite.y); _sprite.destroy(); }
+     _sprite.update = () => {
+     if (!this.cameras.main.worldView.contains(_sprite.x, _sprite.y)) {
+        this.createExplosion(_sprite.x, _sprite.y);
+        this._bombs.remove(_sprite, true,true)
+      }
     }
 
   }
@@ -61,7 +70,7 @@ export default class Example23 extends Examples {
     this.sound.playAudioSprite("sfx", "explo", { volume: .5, loop: false })
     let _explo: Phaser.GameObjects.Sprite = this.add.sprite(x, y, "explosion");
     _explo.play("explosion-anim").on("animationcomplete", () => {
-      console.log("animation complete");
+    
       _explo.destroy();
 
     })
@@ -69,6 +78,15 @@ export default class Example23 extends Examples {
   }
 
   update(time: number, delta: number): void {
+    if (Phaser.Input.Keyboard.JustDown(this._toggledebug)) {
+      if (this.physics.world.drawDebug) {
+        this.physics.world.drawDebug = false;
+        this.physics.world.debugGraphic.clear();
+      }
+      else {
+        this.physics.world.drawDebug = true;
+      }
+    }
   }
 
 

@@ -58,6 +58,40 @@ export let GameData: gameData = {
       height: 32,
       frames: 2
     },
+    {
+      name: "robo",
+      path: "assets/images/robo.png",
+      width: 30,
+      height: 50,
+      frames: 8
+    },
+    , {
+      name: "bonus-heart",
+      path: "assets/images/bonus-heart.png",
+      width: 40,
+      height: 40,
+      frames: 2
+    },
+    {
+      name: "bonus-key",
+      path: "assets/images/bonus-key.png",
+      width: 40,
+      height: 40,
+      frames: 2
+    },
+    {
+      name: "bonus-coin",
+      path: "assets/images/bonus-coin.png",
+      width: 64,
+      height: 64,
+      frames: 8
+    }, {
+      name: "robo2",
+      path: "assets/images/robo2.png",
+      width: 30,
+      height: 50,
+      frames: 8
+    },
 
   ],
   images: [
@@ -82,7 +116,11 @@ export let GameData: gameData = {
     { name: "pgj", path: "assets/images/pgj.png" },
     { name: "stars", path: "assets/images/stars.png" },
     { name: "phaser-gamejam", path: "assets/images/phaser-gamejam.png" },
-     { name: "grid", path: "assets/images/grid.png" },
+    { name: "grid", path: "assets/images/grid.png" },
+    { name: "target", path: "assets/images/target.png" },
+    { name: "moon", path: "assets/images/moon.png" },
+    { name: "cannon-head", path: "assets/images/cannon_head.png" },
+    { name: "cannon-body", path: "assets/images/cannon_body.png" },
 
 
 

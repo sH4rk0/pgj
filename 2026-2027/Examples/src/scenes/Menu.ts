@@ -99,27 +99,27 @@ export default class Menu extends Phaser.Scene {
 
         { name: "Camera FADE", type: Example21, title: "This is example 21", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.21.ts", labsUrl: "https://labs.phaser.io/?path=camera" },
 
-        { name: "Hello Physics", type: Example22, title: "This is example 22", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.22.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
+        { name: "Hello Physics 1", type: Example22, title: "This is example 22", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.22.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
 
-        { name: "Example 23", type: Example23, title: "This is example 23", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.23.ts", labsUrl: "" },
+        { name: "Hello Physics 2", type: Example23, title: "This is example 23", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.23.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
 
-        { name: "Example 24", type: Example24, title: "This is example 24", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.24.ts", labsUrl: "" },
+        { name: "World bounds", type: Example24, title: "This is example 24", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.24.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
 
-        { name: "Example 25", type: Example25, title: "This is example 25", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.25.ts", labsUrl: "" },
+        { name: "Move/Accelerate to", type: Example25, title: "This is example 25", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.25.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
 
-        { name: "Example 26", type: Example26, title: "This is example 26", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.26.ts", labsUrl: "" },
+        { name: "Closest Furthest", type: Example26, title: "This is example 26", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.26.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
 
-        { name: "Example 27", type: Example27, title: "This is example 27", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.27.ts", labsUrl: "" },
+        { name: "Angular velocity", type: Example27, title: "This is example 27", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.27.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
 
-        { name: "Example 28", type: Example28, title: "This is example 28", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.28.ts", labsUrl: "" },
+        { name: "Collide", type: Example28, title: "This is example 28", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.28.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
 
-        { name: "Example 29", type: Example29, title: "This is example 29", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.29.ts", labsUrl: "" },
+        { name: "Overlap", type: Example29, title: "This is example 29", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.29.ts", labsUrl: "https://labs.phaser.io/?path=physics%2Farcade" },
 
-        { name: "Example 30", type: Example30, title: "This is example 30", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.30.ts", labsUrl: "" },
+        { name: "Player", type: Example30, title: "This is example 30", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.30.ts", labsUrl: "" },
 
-        { name: "Example 31", type: Example31, title: "This is example 31", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.31.ts", labsUrl: "" },
+        { name: "Bonus", type: Example31, title: "This is example 31", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.31.ts", labsUrl: "" },
 
-        { name: "Example 32", type: Example32, title: "This is example 32", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.32.ts", labsUrl: "" },
+        { name: "Enemy", type: Example32, title: "This is example 32", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.32.ts", labsUrl: "" },
 
         { name: "Example 33", type: Example33, title: "This is example 33", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.33.ts", labsUrl: "" },
 

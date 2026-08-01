@@ -1,4 +1,6 @@
 import { GameData } from "../GameData";
+import Bonus from "../customGameobjects/bonus/Bonus"
+import Enemy from "../customGameobjects/enemy/Enemy";
 
 export default class Examples extends Phaser.Scene {
 
@@ -19,11 +21,15 @@ export default class Examples extends Phaser.Scene {
 
   }
 
-  update(time: number, delta: number): void {
+  update(time: number, delta: number): void { }
 
-  }
+  shutdown() { }
 
- shutdown() {}
+  addBonus(bonus: Bonus) { }
+  removeBonus(bonus: Bonus) { }
+
+  addEnemy(bonus: Enemy) { }
+  removeEnemy(bonus: Enemy) { }
 
 
 }
