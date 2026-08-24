@@ -169,6 +169,12 @@ export default class Example32 extends Examples {
 
   }
 
+    shutdown(): void {
+    //distruggiamo il player per rimuovere anche il joystick virtuale (nipplejs)
+    // altrimenti al cambio scena continua a generare eventi su un player non più valido
+    this._player.destroy();
+  }
+
 
 
 }

@@ -14,6 +14,10 @@ export default class Player extends Phaser.GameObjects.Sprite implements IPlayer
     private _cursors: Phaser.Types.Input.Keyboard.CursorKeys;
     //variabile locale per impostare la velocità del body
     private _velocity: number = 200;
+    //riferimento al joystick virtuale, serve per poterlo distruggere allo shutdown
+    //il tipo non è scritto a mano: ReturnType<typeof nipplejs.create> chiede a TypeScript
+    //"qual è il tipo restituito dalla funzione nipplejs.create()?" e usa quello automaticamente
+    private _joystickManager: ReturnType<typeof nipplejs.create>;
     //array di oggetti per la creazione dell’animazione
     private _animations: Array<{ key: string, frames: Array<number>, frameRate: number, yoyo: boolean, repeat: number }> = [
         { key: "idle", frames: [0, 1, 2, 3], frameRate: 10, yoyo: false, repeat: -1 },
@@ -22,13 +26,11 @@ export default class Player extends Phaser.GameObjects.Sprite implements IPlayer
     constructor(params: genericConfig) {
         super(params.scene, params.x, params.y, params.key);
         this._config = params;
-
+       
         //richiamiamo il metodo create nel quale sono inserite alcune
         // inizializzazioni della nostra classe custom
         this.create();
-        //richiamiamo un metodo locale per implementare le animazioni dello
-        // sprite
-        this.createAnimations();
+
     }
 
     create() {
@@ -50,10 +52,16 @@ export default class Player extends Phaser.GameObjects.Sprite implements IPlayer
         //Aggiungiamo il Player alla scena
         this._scene.add.existing(this);
 
+         //richiamiamo un metodo locale per implementare le animazioni dello
+        // sprite
+        this.createAnimations();
+
         if (this._scene.sys.game.device.input.touch) {
 
-            let joystickManager: any = nipplejs.create({ color: 'red' });
+            this._joystickManager = nipplejs.create({ color: 'red' });
+            let joystickManager = this._joystickManager;
             // possiamo eseguire del codice quando il virtual joystick inizia a muoversi
+
             joystickManager.on('start', () => { })
             // sull’ evento move eseguiamo il codice per il movimento
             // nipplejs v1 passa un unico oggetto evento: evt.data contiene forza e angolo
@@ -77,6 +85,7 @@ export default class Player extends Phaser.GameObjects.Sprite implements IPlayer
                 this.anims.play('idle', true);
                 this._body.setVelocity(0);
             });
+
 
 
         }
@@ -147,6 +156,17 @@ export default class Player extends Phaser.GameObjects.Sprite implements IPlayer
                 this.anims.play('idle', true);
             }
         }
+    }
+
+    destroy(fromScene?: boolean) {
+        //distruggiamo il joystick virtuale se esiste, altrimenti allo shutdown
+        // della scena nipplejs continua a triggerare eventi su un player non più valido
+        if (this._joystickManager) {
+    
+            this._joystickManager.destroy();
+            this._joystickManager = undefined;
+        }
+        super.destroy(fromScene);
     }
 
 }

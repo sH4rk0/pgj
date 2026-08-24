@@ -42,8 +42,7 @@ export let GameData: gameData = {
       height: 80,
       frames: 28
     },
-    { name: "levelthumb", path: "assets/images/hud/levelthumb.png", width: 60, height: 60, frames: 50 },
-    { name: "levelpages", path: "assets/images/hud/levelpages.png", width: 30, height: 30, frames: 50 },
+
     {
       name: "bomb",
       path: "assets/images/bomb.png",
@@ -121,6 +120,39 @@ export let GameData: gameData = {
     { name: "moon", path: "assets/images/moon.png" },
     { name: "cannon-head", path: "assets/images/cannon_head.png" },
     { name: "cannon-body", path: "assets/images/cannon_body.png" },
+
+
+    { name: "thumb-1", path: "assets/images/hud/thumbs/1.jpg" },
+    { name: "thumb-2", path: "assets/images/hud/thumbs/2.jpg" },
+    { name: "thumb-3", path: "assets/images/hud/thumbs/3.jpg" },
+    { name: "thumb-4", path: "assets/images/hud/thumbs/4.jpg" },
+    { name: "thumb-5", path: "assets/images/hud/thumbs/5.jpg" },
+    { name: "thumb-6", path: "assets/images/hud/thumbs/6.jpg" },
+    { name: "thumb-7", path: "assets/images/hud/thumbs/7.jpg" },
+    { name: "thumb-8", path: "assets/images/hud/thumbs/8.jpg" },
+    { name: "thumb-9", path: "assets/images/hud/thumbs/9.jpg" },
+    { name: "thumb-10", path: "assets/images/hud/thumbs/10.jpg" },
+    { name: "thumb-11", path: "assets/images/hud/thumbs/11.jpg" },
+    { name: "thumb-12", path: "assets/images/hud/thumbs/12.jpg" },
+    { name: "thumb-13", path: "assets/images/hud/thumbs/13.jpg" },
+    { name: "thumb-14", path: "assets/images/hud/thumbs/14.jpg" },
+    { name: "thumb-15", path: "assets/images/hud/thumbs/15.jpg" },
+    { name: "thumb-16", path: "assets/images/hud/thumbs/16.jpg" },
+    { name: "thumb-17", path: "assets/images/hud/thumbs/17.jpg" },
+    { name: "thumb-18", path: "assets/images/hud/thumbs/18.jpg" },
+    { name: "thumb-19", path: "assets/images/hud/thumbs/19.jpg" },
+    { name: "thumb-20", path: "assets/images/hud/thumbs/20.jpg" },
+    { name: "thumb-21", path: "assets/images/hud/thumbs/21.jpg" },
+    { name: "thumb-22", path: "assets/images/hud/thumbs/22.jpg" },
+    { name: "thumb-23", path: "assets/images/hud/thumbs/23.jpg" },
+    { name: "thumb-24", path: "assets/images/hud/thumbs/24.jpg" },
+    { name: "thumb-25", path: "assets/images/hud/thumbs/25.jpg" },
+    { name: "thumb-26", path: "assets/images/hud/thumbs/26.jpg" },
+    { name: "thumb-27", path: "assets/images/hud/thumbs/27.jpg" },
+    { name: "thumb-28", path: "assets/images/hud/thumbs/28.jpg" },
+    { name: "thumb-29", path: "assets/images/hud/thumbs/29.jpg" },
+    { name: "thumb-30", path: "assets/images/hud/thumbs/30.jpg" },
+    { name: "thumb-31", path: "assets/images/hud/thumbs/31.jpg" },
 
 
 

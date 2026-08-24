@@ -23,9 +23,9 @@ export default class Example3 extends Examples {
   create(): void {
 
 
-    this.cameras.main.setBackgroundColor("#ff0000");
 
-    // this._tile1 = this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
+
+     this._tile1 = this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
 
     this._image1 = this.add.image(150, 150, "logo-phaser");
     this._image2 = this.add.image(150, 330, "logo-phaser").setAngle(45).setScale(.5);

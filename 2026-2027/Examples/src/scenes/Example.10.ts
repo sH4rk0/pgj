@@ -26,24 +26,24 @@ export default class Example10 extends Examples {
   create() {
 
 
-    //setta il background di sfondo a bianco
-    this.cameras.main.setBackgroundColor("#ffffff");
+
+
     this._tile1 = this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
 
     this._logo = this.add.image(640, 50, "phaser-gamejam").setScale(.8).setAlpha(0).setDepth(10);
 
 
-const fx = this._logo.enableFilters().filters.internal.addColorMatrix().colorMatrix;
+    const fx = this._logo.enableFilters().filters.internal.addColorMatrix().colorMatrix;
 
-        const tween = this.tweens.addCounter({
-            from: 0,
-            to: 360,
-            duration: 3000,
-            loop: -1,
-            onUpdate: () => {
-                fx.hue(tween.getValue());
-            }
-        });
+    const tween = this.tweens.addCounter({
+      from: 0,
+      to: 360,
+      duration: 3000,
+      loop: -1,
+      onUpdate: () => {
+        fx.hue(tween.getValue());
+      }
+    });
 
 
     let _animation: Phaser.Types.Animations.Animation = {
@@ -61,7 +61,7 @@ const fx = this._logo.enableFilters().filters.internal.addColorMatrix().colorMat
     }).on("pointerout", () => {
       this._text1.clearTint();
     }).on("pointerdown", () => {
-     //do something
+      //do something
     });
 
     this._text2 = this.add.text(640, 600, "Credits").setDepth(10).setAlpha(0).setOrigin(.5).setFontSize(40).setFontFamily("Roboto").setInteractive()
@@ -157,7 +157,7 @@ const fx = this._logo.enableFilters().filters.internal.addColorMatrix().colorMat
         });
       },
       onUpdate: () => {
-       Phaser.Actions.RotateAroundDistance(this._groupStars.getChildren(), { x: 640, y: 550 }, 0.02, circle.radius);
+        Phaser.Actions.RotateAroundDistance(this._groupStars.getChildren(), { x: 640, y: 550 }, 0.02, circle.radius);
       }
     });
 
