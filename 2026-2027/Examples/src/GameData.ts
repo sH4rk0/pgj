@@ -19,6 +19,11 @@ export let GameData: gameData = {
     loadingBarY: 640,
   },
 
+  tilemaps: [
+    // mappa Tiled usata dall'esempio 33 (piattaforme)
+    { key: "level-0-platform", path: "assets/map/level-0-platform.json" },
+  ],
+
   spritesheets: [
 
     {
@@ -91,6 +96,22 @@ export let GameData: gameData = {
       height: 50,
       frames: 8
     },
+    // spritesheet del player dell'esempio 33 (personaggio fermo)
+    {
+      name: "robo-idle",
+      path: "assets/images/robo-idle.png",
+      width: 30,
+      height: 50,
+      frames: 4
+    },
+    // spritesheet del player dell'esempio 33 (personaggio in corsa)
+    {
+      name: "robo-run",
+      path: "assets/images/robo-run.png",
+      width: 30,
+      height: 50,
+      frames: 4
+    },
 
   ],
   images: [
@@ -120,6 +141,8 @@ export let GameData: gameData = {
     { name: "moon", path: "assets/images/moon.png" },
     { name: "cannon-head", path: "assets/images/cannon_head.png" },
     { name: "cannon-body", path: "assets/images/cannon_body.png" },
+    // tileset usato dalla mappa Tiled dell'esempio 33 (piattaforme)
+    { name: "platform-extruded", path: "assets/map/platform-extruded.png" },
 
 
     { name: "thumb-1", path: "assets/images/hud/thumbs/1.jpg" },

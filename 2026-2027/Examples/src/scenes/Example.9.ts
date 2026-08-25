@@ -1,6 +1,7 @@
 import { GameData } from "../GameData";
 import Examples from "./Examples";
 
+// Esempio di sequenza di tween concatenati: animazione del logo seguita dall'animazione della bomba, con tween pausabile
 export default class Example9 extends Examples {
 
   private _text: Phaser.GameObjects.Text;
@@ -23,6 +24,7 @@ export default class Example9 extends Examples {
     this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
     this._text = this.add.text(640, 550, "").setFontSize(30).setOrigin(.5);
     this._logo = this.add.image(640, 50, "phaser-gamejam").setAlpha(0).setScale(.8).setDepth(10);
+    // Bomba (inizialmente invisibile, alpha 0) che al click metti in pausa/riprende il tween del bagliore
     this._bomb = this.add.image(640, 350, "bomb").setAlpha(0).setScale(2).setDepth(10).setInteractive().on("pointerdown", () => {
 
       if (this._flareTween.paused) {
@@ -43,6 +45,7 @@ export default class Example9 extends Examples {
 
     this._flare = this.add.image(100, 750, "flares").setAlpha(1).setScale(2).setDepth(10);
 
+    // Tween del bagliore che va avanti e indietro all'infinito (yoyo + repeat:-1); il riferimento viene salvato per poterlo pausare/riprendere
     this._flareTween = this.tweens.add({
       targets: this._flare,
       duration: 3000,
@@ -53,6 +56,7 @@ export default class Example9 extends Examples {
       repeat: -1
     });
 
+    // Tween di ingresso del logo: fa dissolvenza (alpha) e sposta verso il basso (y), poi avvia l'animazione della bomba
     this.tweens.add({
       targets: this._logo,
       alpha: 1,
@@ -60,11 +64,11 @@ export default class Example9 extends Examples {
       y: 200,
       ease: "Sine.easeOut",
       delay: 1000,
-      onStart: () => {
+      onStart: () => { // callback eseguita all'inizio del tween
         this._text.setText("Start logo animation");
 
       },
-      onComplete: () => {
+      onComplete: () => { // callback eseguita al termine del tween: incatena la prossima animazione
 
         this.bombAnimation();
 
@@ -75,6 +79,7 @@ export default class Example9 extends Examples {
   }
 
 
+  // Tween di comparsa della bomba (con effetto "rimbalzo"), eseguito dopo l'animazione del logo
   bombAnimation() {
 
     this.tweens.add({
@@ -100,6 +105,7 @@ export default class Example9 extends Examples {
 
   update(time: number, delta: number): void {
 
+    // rotazione continua della bomba indipendente dal tween di scala/posizione
     this._bomb.rotation+=.01;
 
 

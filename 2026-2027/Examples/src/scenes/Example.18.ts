@@ -1,6 +1,8 @@
 ﻿import { GameData } from "../GameData";
 import Examples from "./Examples";
 
+// Esempio: come Example17 (movimento camera con freccie), con l'aggiunta
+// di uno zoom animato della camera dopo un ritardo (timer event).
 export default class Example18 extends Examples {
 
 
@@ -63,7 +65,8 @@ export default class Example18 extends Examples {
     //creiamo il controller
     this._controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
 
-    
+
+    // Dopo 2 secondi chiamiamo this.zoom passando 2 come argomento (args)
     this.time.addEvent({ delay: 2000,  callback: this.zoom, args:[2], callbackScope: this})
 
 
@@ -72,13 +75,16 @@ export default class Example18 extends Examples {
 
   update(time: number, delta: number): void {
 
+    // Necessario ogni frame: aggiorna la posizione della camera in base
+    // ai tasti premuti e ai parametri di accelerazione/drag configurati
     this._controls.update(delta);
 
   }
 
+  // Anima lo zoom della camera fino al valore richiesto
   zoom(zoom:number) {
 
-   
+
     this._mainCamera.zoomTo(
      zoom, //valore dello zoom
       1000, //duration

@@ -1,6 +1,9 @@
 ﻿import { GameData } from "../GameData";
 import Examples from "./Examples";
 
+// Esempio: come Example14/15, ma qui usiamo un evento custom della scena
+// (events.emit) per comunicare con una scena HUD sovrapposta, che viene
+// chiusa esplicitamente nello shutdown.
 export default class Example16 extends Examples {
 
   private _numBombs: number = 0;
@@ -21,6 +24,7 @@ export default class Example16 extends Examples {
     });
 
 
+    // Numero di bombe casuale ad ogni partita, tra 2 e 5
     this._numBombs = Phaser.Math.RND.integerInRange(2, 5);
 
     for (let i = 0; i < this._numBombs; i++) {
@@ -35,6 +39,8 @@ export default class Example16 extends Examples {
   createBomb(): void {
 
 
+    // Bomba interattiva: al click genera l'esplosione nella sua posizione
+    // e si autodistrugge
     let _bomb = this.add.image(Phaser.Math.RND.integerInRange(100, 1180), Phaser.Math.RND.integerInRange(100, 700), "bomb").setScale(2).setAlpha(0).setInteractive().on("pointerdown", () => {
 
       this.createExplosion(_bomb.x, _bomb.y)
@@ -51,7 +57,10 @@ export default class Example16 extends Examples {
 
   createExplosion(x: number, y: number) {
     this._counter++;
+     // Emettiamo un evento custom sulla scena: altre scene (es. la HUD)
+     // possono ascoltarlo con this.events / scene.events per aggiornarsi
      this.events.emit("update-bombs",[1]);
+    // Creiamo l'animazione di esplosione una sola volta (anims.exists evita duplicati)
     if (!this.anims.exists("explosion-anim")) {
       let _animation4: Phaser.Types.Animations.Animation = {
         key: "explosion-anim",
@@ -64,11 +73,14 @@ export default class Example16 extends Examples {
       this.anims.create(_animation4);
     }
 
+    // Sprite temporaneo dell'esplosione, distrutto al termine dell'animazione
     let _explo: Phaser.GameObjects.Sprite = this.add.sprite(x, y, "explosion");
     _explo.play("explosion-anim").on("animationcomplete", () => {
 
       _explo.destroy();
 
+      // Quando tutte le bombe sono state distrutte torniamo al menu,
+      // passando il conteggio finale come dato di avvio della scena
       if (this._counter == this._numBombs) {
         //passiamo il valore tramite il parametro data
         this.scene.start("ExamplesScene", { bombs: this._counter });
@@ -86,6 +98,8 @@ export default class Example16 extends Examples {
 
   }
 
+// Alla chiusura della scena, fermiamo e rimuoviamo anche la scena HUD
+// collegata, così non resta attiva in background
 shutdown(): void {
     console.log("shutdown 16");
     this.scene.stop("ExamplesHUD")

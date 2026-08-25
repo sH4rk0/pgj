@@ -1,6 +1,8 @@
 ﻿import { GameData } from "../GameData";
 import Examples from "./Examples";
 
+// Esempio: uso dei Timer Event (this.time.addEvent) per eseguire
+// azioni ripetute nel tempo (loop) e azioni una tantum dopo un ritardo.
 export default class Example12 extends Examples {
 
 
@@ -22,6 +24,8 @@ export default class Example12 extends Examples {
     this.add.tileSprite(0, 0, 1280, 800, "space").setOrigin(0);
     this._text1 = this.add.text(640, 100, "Waiting").setTint(0xffffff).setOrigin(.5);
 
+    // Bottone che metti in pausa/riprende il timer semplicemente
+    // impostando la proprietà "paused" del TimerEvent
     this._text3 = this.add.text(640, 150, "Click here to pause bomb release").setTint(0xffffff).setDepth(10).setOrigin(.5).setFontSize(30).setInteractive().on("pointerdown", () => {
       if (this._timer.paused == false) {
         this._timer.paused = true;
@@ -38,6 +42,7 @@ export default class Example12 extends Examples {
 
 
     //do something every 1 second
+    // loop:true fa ripetere il callback all'infinito ogni "delay" ms
     this._timer = this.time.addEvent({
       delay: 1000,
       loop: true,
@@ -49,6 +54,7 @@ export default class Example12 extends Examples {
 
 
     //do somethig after 3 seconds
+    // Senza loop, questo evento viene eseguito una sola volta dopo il delay
     this.time.addEvent({
       delay: 3000,
       callback: this.myCustomMethod,
@@ -63,6 +69,7 @@ export default class Example12 extends Examples {
      //method fired every 1 sec
     this._counter++;
     this._text1.setText("bomb: " + this._counter);
+    // Bomba creata invisibile (alpha 0) e poi mostrata con un fade in
     let _bomb = this.add.image(Phaser.Math.RND.integerInRange(100, 1180), Phaser.Math.RND.integerInRange(100, 700), "bomb").setAlpha(0);
     this.tweens.add({
       targets:_bomb,

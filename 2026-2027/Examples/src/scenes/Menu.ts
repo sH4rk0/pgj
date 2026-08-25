@@ -121,6 +121,8 @@ export default class Menu extends Phaser.Scene {
 
         { name: "Enemy", type: Example32, title: "This is example 32", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.32.ts", labsUrl: "", thumb:"thumb-31" },
 
+        { name: "Platform", type: Example33, title: "This is example 33", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2026-2027/Examples/src/scenes/Example.33.ts", labsUrl: "https://labs.phaser.io/?path=tilemap", thumb:"thumb-31" },
+
         ]
 
     private _container: Phaser.GameObjects.Container;

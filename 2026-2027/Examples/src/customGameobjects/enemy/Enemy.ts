@@ -52,4 +52,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite implements IEnemy {
     create() { }
     update(time: number, delta: number) { }
 
+    // inverte la direzione orizzontale del nemico (usato ad es. dall'esempio 33
+    // quando un robot incontra una tile con la proprietà "changeDirection")
+    changeDirection(): void {
+        this._body.setVelocityX(this._body.velocity.x * -1);
+        this.setFlipX(!this.flipX);
+    }
+
 }

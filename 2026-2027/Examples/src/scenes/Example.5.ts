@@ -1,6 +1,7 @@
 import { GameData } from "../GameData";
 import Examples from "./Examples";
 
+// Esempio di parallax: più livelli di tileSprite che scorrono a velocità diverse per dare profondità
 export default class Example5 extends Examples {
 
 
@@ -14,6 +15,7 @@ export default class Example5 extends Examples {
 
   private _text1: Phaser.GameObjects.Text;
   private _sprite1: Phaser.GameObjects.Sprite;
+  // Definizioni delle animazioni in forma di dati, così si possono creare con un semplice forEach
   private _animations: Array<{ key: string, frames: Array<number>, frameRate: number, yoyo: boolean, repeat: number }> = [
     { key: "player-running", frames: [0, 1, 2, 3, 4, 5, 6, 7], frameRate:12, yoyo: false, repeat: -1 },
     { key: "player-idle", frames: [8, 9, 10, 11], frameRate: 8, yoyo: false, repeat: -1 }
@@ -42,6 +44,7 @@ export default class Example5 extends Examples {
 
     this._sprite1 = this.add.sprite(100, 640, "players").setScale(2);
 
+    // Crea dinamicamente tutte le animazioni definite nell'array _animations
     this._animations.forEach(element => {
       if (!this.anims.exists(element.key)) {
         let _animation: Phaser.Types.Animations.Animation = {
@@ -57,6 +60,7 @@ export default class Example5 extends Examples {
 
     this._sprite1.play("player-idle");
 
+    // this.input.on ascolta i click su tutta la scena (non su un singolo oggetto): avvia/ferma il "movimento" del parallax
     this.input.on("pointerdown", () => {
 
       if (!this._clicked) {
@@ -77,6 +81,7 @@ export default class Example5 extends Examples {
 
   update(time: number, delta: number): void {
 
+    // ogni livello scorre a velocità diversa: i livelli "più lontani" sono più lenti, creando l'effetto parallax
     if (this._clicked) {
       this._tile1.tilePositionX += 0.2; //velocità lenta
       this._tile2.tilePositionX += 0.4; //velocità media 	

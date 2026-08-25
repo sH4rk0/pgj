@@ -9,10 +9,12 @@ export default class Example26 extends Examples {
   private _target: Phaser.GameObjects.Image;
   private _text: Phaser.GameObjects.Text;
 
-
+  //sprite "sorgente" che segue il mouse: verrà usato come punto di riferimento
+  //per calcolare quale bomba è la più vicina/lontana
   private _sprite1: Phaser.GameObjects.Sprite;
   private _sprite2: Phaser.GameObjects.Sprite;
   private _sprite3: Phaser.GameObjects.Sprite;
+  //oggetto grafico usato per disegnare le linee verso la bomba più vicina/lontana
   private _gfx: Phaser.GameObjects.Graphics;
 
 
@@ -20,7 +22,8 @@ export default class Example26 extends Examples {
     super();
   }
 
-
+  //metodo create: prepara sfondo, gruppo bombe, sprite sorgente che segue il mouse
+  //e la grafica per disegnare le linee di distanza minima/massima
   create() {
 
 
@@ -41,12 +44,14 @@ export default class Example26 extends Examples {
 
 
     this._gfx = this.add.graphics();
+    //this.physics.add.sprite crea sprite + body fisico in un solo passaggio (a differenza
+    //di this.add.sprite + physics.world.enableBody usato altrove)
     this._sprite1 = this.physics.add.sprite(200, 200, "target"); //source sprite
 
     this._bombs = this.add.group({ runChildUpdate: true });
 
 
-
+    //lo sprite sorgente segue la posizione del puntatore del mouse/touch
     this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
       this._sprite1.setVisible(true).setPosition(pointer.x, pointer.y);
     });
@@ -65,7 +70,7 @@ export default class Example26 extends Examples {
 
   }
 
-
+  //genera due bombe che rimbalzeranno liberamente nella scena
   toTarget() {
 
 
@@ -76,7 +81,7 @@ export default class Example26 extends Examples {
 
   }
 
-
+  //crea una bomba circolare in posizione casuale, con velocità casuale e rimbalzo sui confini del mondo
   generateBomb() {
 
     let _sprite = this.add.sprite(Phaser.Math.RND.integerInRange(100, 1180), Phaser.Math.RND.integerInRange(100, 700), "bomb").setScale(2).setAlpha(0);
@@ -95,7 +100,8 @@ export default class Example26 extends Examples {
   }
 
 
-
+  //update globale: gestisce il toggle debug e disegna le linee verso la bomba
+  //più vicina (verde) e più lontana (rossa) rispetto allo sprite sorgente
   update(time: number, delta: number): void {
     if (Phaser.Input.Keyboard.JustDown(this._toggledebug)) {
       if (this.physics.world.drawDebug) {
@@ -107,6 +113,8 @@ export default class Example26 extends Examples {
       }
     }
 
+    //physics.closest/furthest confrontano le distanze tra la sorgente e tutti gli
+    //elementi del gruppo, restituendo rispettivamente il più vicino e il più lontano
     let _closest = <Phaser.GameObjects.Sprite>this.physics.closest(this._sprite1, this._bombs.getChildren());
     let _furthest = <Phaser.GameObjects.Sprite>this.physics.furthest(this._sprite1, this._bombs.getChildren());
 

@@ -4,16 +4,17 @@ import Examples from "../../scenes/Examples";
 import nipplejs from 'nipplejs';
 
 export default class Player extends Phaser.GameObjects.Sprite implements IPlayer {
-    private _config: genericConfig;
+    protected _config: genericConfig;
     //riferimento alla scena dove il nostro game object verrà inserito
-    private _scene: Examples;
+    //protected: così le sottoclassi (es. PlayerPlatform) possono riutilizzarlo
+    protected _scene: Examples;
     //variabile locale di tipo arcade.body per poter accedere ai metodi del Body
     // descritti nel capitolo 7
-    private _body: Phaser.Physics.Arcade.Body;
+    protected _body: Phaser.Physics.Arcade.Body;
     //variabile locale per la gestione dei tasti cursore come visto nel capitolo 6
-    private _cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+    protected _cursors: Phaser.Types.Input.Keyboard.CursorKeys;
     //variabile locale per impostare la velocità del body
-    private _velocity: number = 200;
+    protected _velocity: number = 200;
     //riferimento al joystick virtuale, serve per poterlo distruggere allo shutdown
     //il tipo non è scritto a mano: ReturnType<typeof nipplejs.create> chiede a TypeScript
     //"qual è il tipo restituito dalla funzione nipplejs.create()?" e usa quello automaticamente

@@ -6,14 +6,17 @@ export default class Example24 extends Examples {
 
   private _bombs: Phaser.GameObjects.Group;
   private _toggledebug: Phaser.Input.Keyboard.Key;
+  //testi che mostrano, per ogni bomba, quanti rimbalzi restano prima di esplodere
   private _bombCounters: Array<Phaser.GameObjects.Text>;
+  //contatore incrementale usato come indice per associare ogni bomba al proprio testo
   private _counter: number;
 
   constructor() {
     super();
   }
 
-
+  //metodo create: prepara sfondo, gruppo bombe, timer di generazione, tasto debug
+  //e l'evento globale 'worldbounds' scatenato quando un body urta i confini del mondo
   create() {
 
     this._counter=0;
@@ -28,17 +31,22 @@ export default class Example24 extends Examples {
 
     this._toggledebug = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
+    //evento emesso dal mondo fisico ogni volta che un body con onWorldBounds=true
+    //rimbalza contro i confini del mondo (bordi dello schermo di default)
     this.physics.world.on('worldbounds', (body: Phaser.Physics.Arcade.Body) => {
       this.sound.playAudioSprite("sfx", "nodamage", { volume: .5 });
       let _gameObject: Phaser.GameObjects.Sprite = <Phaser.GameObjects.Sprite>body.gameObject;
+      //recuperiamo i dati custom salvati sullo sprite con setData
       let _bounces: number = _gameObject.getData("bounces");
       let _maxBounces: number = _gameObject.getData("maxBounces");
       let _counter:number = _gameObject.getData("counter");
       _bounces++;
 
+      //aggiorniamo il testo con i rimbalzi rimanenti
       this._bombCounters[_counter].setText(_maxBounces-_bounces+"");
-    
+
       _gameObject.setData("bounces", _bounces);
+      //quando la bomba ha esaurito i rimbalzi disponibili, esplode e viene rimossa
       if (_bounces == _maxBounces) {
 
         this.createExplosion(_gameObject.x, _gameObject.y);
@@ -52,7 +60,8 @@ export default class Example24 extends Examples {
 
   }
 
-
+  //crea una bomba circolare che rimbalza sui confini del mondo, con un numero
+  //casuale di rimbalzi massimi mostrato da un contatore testuale che la segue
   generateBomb() {
     this.sound.playAudioSprite("sfx", "launch", { volume: .5, loop: false })
     let _sprite = this.add.sprite(640, 400, "bomb").setScale(2).setAlpha(0);
@@ -64,14 +73,19 @@ export default class Example24 extends Examples {
     let _maxBounces: number = Phaser.Math.RND.integerInRange(2, 5);
     _text.setText(_maxBounces+"");
     this._bombCounters.push(_text);
+    //salviamo dati custom sullo sprite: utile per conservare stato legato all'oggetto
+    //senza dover creare variabili esterne per ogni istanza
     _sprite.setData("maxBounces", _maxBounces)
     _sprite.setData("bounces", 0);
-    
+
     _sprite.setData("counter",this._counter)
+    //abilita l'emissione dell'evento 'worldbounds' quando questo body tocca i confini
     _body.onWorldBounds = true;
+    //velocità casuale, collisione con i confini del mondo attiva, rimbalzo elastico (bounce 1,1)
     _body.setVelocity(Phaser.Math.RND.integerInRange(100, 400), Phaser.Math.RND.integerInRange(100, 400)).setCollideWorldBounds(true).setBounce(1, 1);
     this._bombs.add(_sprite)
 
+    //il testo del contatore segue la posizione della bomba ad ogni frame
     _sprite.update = () => {
 
       _text.setPosition(_sprite.x, _sprite.y);
@@ -81,6 +95,7 @@ export default class Example24 extends Examples {
 
   }
 
+  //crea (una sola volta) l'animazione di esplosione e la riproduce nella posizione indicata
   createExplosion(x: number, y: number) {
 
     if (!this.anims.exists("explosion-anim")) {
@@ -104,6 +119,7 @@ export default class Example24 extends Examples {
 
   }
 
+  //update globale: gestisce il toggle del debug grafico della fisica (tasto D)
   update(time: number, delta: number): void {
     if (Phaser.Input.Keyboard.JustDown(this._toggledebug)) {
       if (this.physics.world.drawDebug) {

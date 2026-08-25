@@ -1,6 +1,7 @@
 ﻿import { GameData } from "../GameData";
 import Examples from "./Examples";
 
+// Esempio: movimento della camera con i tasti freccia tramite SmoothedKeyControl
 export default class Example17 extends Examples {
 
 
@@ -69,6 +70,8 @@ export default class Example17 extends Examples {
 
   update(time: number, delta: number): void {
 
+    // Necessario ogni frame: aggiorna la posizione della camera in base
+    // ai tasti premuti e ai parametri di accelerazione/drag configurati
     this._controls.update(delta);
 
   }

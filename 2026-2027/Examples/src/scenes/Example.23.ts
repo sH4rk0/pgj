@@ -11,7 +11,7 @@ export default class Example23 extends Examples {
     super();
   }
 
-
+  //metodo create: prepara sfondo, gruppo bombe, timer di generazione e tasto debug
   create() {
 
 
@@ -30,7 +30,7 @@ export default class Example23 extends Examples {
 
   }
 
-
+  //crea una bomba con velocità iniziale casuale; il body fisico è a volte rettangolare, a volte circolare
   generateBomb() {
     this.sound.playAudioSprite("sfx", "launch", { volume: .5, loop: false })
     let _sprite = this.add.sprite(640, 400, "bomb").setScale(2).setAlpha(0);
@@ -41,11 +41,14 @@ export default class Example23 extends Examples {
     _body.setVelocityY(-300).setVelocityX(Phaser.Math.RND.integerInRange(-200, 200));
     this._bombs.add(_sprite)
 
+    //con probabilità 50% sostituiamo il body rettangolare (default) con uno circolare
+    //setOffset riposiziona il body rispetto allo sprite per centrarlo correttamente
     if (Phaser.Math.RND.integerInRange(0, 1)) {
       _body.setCircle(10).setOffset(6, 6);
     }
 
      _sprite.update = () => {
+     //se la bomba esce dall'area visibile della camera, esplode e viene rimossa
      if (!this.cameras.main.worldView.contains(_sprite.x, _sprite.y)) {
         this.createExplosion(_sprite.x, _sprite.y);
         this._bombs.remove(_sprite, true,true)
@@ -54,6 +57,7 @@ export default class Example23 extends Examples {
 
   }
 
+  //crea (una sola volta) l'animazione di esplosione e la riproduce nella posizione indicata
   createExplosion(x: number, y: number) {
 
     if (!this.anims.exists("explosion-anim")) {
@@ -69,14 +73,16 @@ export default class Example23 extends Examples {
     }
     this.sound.playAudioSprite("sfx", "explo", { volume: .5, loop: false })
     let _explo: Phaser.GameObjects.Sprite = this.add.sprite(x, y, "explosion");
+    //a fine animazione lo sprite dell'esplosione viene distrutto
     _explo.play("explosion-anim").on("animationcomplete", () => {
-    
+
       _explo.destroy();
 
     })
 
   }
 
+  //update globale: gestisce il toggle del debug grafico della fisica (tasto D)
   update(time: number, delta: number): void {
     if (Phaser.Input.Keyboard.JustDown(this._toggledebug)) {
       if (this.physics.world.drawDebug) {

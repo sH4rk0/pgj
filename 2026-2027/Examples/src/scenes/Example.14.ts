@@ -1,6 +1,8 @@
 ﻿import { GameData } from "../GameData";
 import Examples from "./Examples";
 
+// Esempio: interazione con più oggetti (le bombe), animazione di esplosione
+// generata dinamicamente e cambio di scena al completamento dell'obiettivo.
 export default class Example14 extends Examples {
 
   private _numBombs: number=0;
@@ -21,6 +23,7 @@ export default class Example14 extends Examples {
     });
 
 
+    // Numero di bombe casuale ad ogni partita, tra 2 e 5
     this._numBombs = Phaser.Math.RND.integerInRange(2, 5);
 
     for (let i = 0; i < this._numBombs; i++) {
@@ -33,8 +36,10 @@ export default class Example14 extends Examples {
 
 
   createBomb(): void {
-   
 
+
+    // Bomba interattiva: al click genera l'esplosione nella sua posizione
+    // e si autodistrugge
     let _bomb = this.add.image(Phaser.Math.RND.integerInRange(100, 1180), Phaser.Math.RND.integerInRange(100, 700), "bomb").setScale(2).setAlpha(0).setInteractive().on("pointerdown", () => {
 
       this.createExplosion(_bomb.x, _bomb.y)
@@ -51,23 +56,27 @@ export default class Example14 extends Examples {
 
   createExplosion(x: number, y: number) {
     this._counter++;
+     // Creiamo l'animazione di esplosione una sola volta (anims.exists evita duplicati)
      if (!this.anims.exists("explosion-anim")) {
       let _animation4: Phaser.Types.Animations.Animation = {
         key: "explosion-anim",
         frames: this.anims.generateFrameNumbers("explosion", { frames: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27] }),
         frameRate: 15,
         yoyo: false,
-        repeat: 0,
+        repeat: 0, // eseguita una sola volta, senza ripetizioni
 
       };
       this.anims.create(_animation4);
     }
 
+    // Sprite temporaneo dell'esplosione, distrutto al termine dell'animazione
     let _explo: Phaser.GameObjects.Sprite = this.add.sprite(x, y, "explosion");
     _explo.play("explosion-anim").on("animationcomplete", () => {
-   
+
       _explo.destroy();
-     
+
+      // Quando tutte le bombe sono state distrutte, salviamo il punteggio
+      // nel registry (dati condivisi tra scene) e torniamo al menu
       if(this._counter==this._numBombs){
         this.registry.set("bombs",this._counter)
          this.scene.start("ExamplesScene");

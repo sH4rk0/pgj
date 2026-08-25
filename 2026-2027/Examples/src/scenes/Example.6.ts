@@ -1,6 +1,7 @@
 import { GameData } from "../GameData";
 import Examples from "./Examples";
 
+// Esempio di Group: gestione di molti sprite come collezione, con rimozione casuale ed esplosioni
 export default class Example6 extends Examples {
 
   private _groupBomb: Phaser.GameObjects.Group;
@@ -16,7 +17,7 @@ export default class Example6 extends Examples {
 
   create() {
 
-
+    // Group: contenitore logico di GameObject, utile per applicare operazioni a tutti gli elementi insieme
     this._groupBomb = this.add.group();
 
     //setta il background di sfondo a bianco
@@ -38,6 +39,7 @@ export default class Example6 extends Examples {
 
 
 
+    // Crea 100 sprite bomba, tutti con l'animazione di rotazione, e li aggiunge al group
     for (let i = 0; i < 100; i++) {
 
       let _sprite = this.add.sprite(0, 0, "bomb");
@@ -46,6 +48,7 @@ export default class Example6 extends Examples {
 
     }
 
+    // GridAlign dispone automaticamente tutti gli elementi del group in una griglia (10 colonne, celle 58x48)
     Phaser.Actions.GridAlign(this._groupBomb.getChildren(), { width: 10, cellWidth: 58, cellHeight: 48, x: 340, y: 200 });
 
     if (!this.anims.exists("explosion-anim")) {
@@ -61,8 +64,10 @@ export default class Example6 extends Examples {
     }
 
     this._text1 = this.add.text(640, 740, 'bombs: ' + this._groupBomb.getLength()).setFontSize(40).setOrigin(.5);
+    // Al click, rimuove casualmente un elemento dal group e fa esplodere la bomba corrispondente
     this.input.on("pointerdown", () => {
 
+      // RemoveRandomElement rimuove ed estrae un elemento a caso dall'array (rimane comunque da rimuoverlo/distruggerlo come sprite)
       let bomb: Phaser.GameObjects.Sprite = <Phaser.GameObjects.Sprite>Phaser.Utils.Array.RemoveRandomElement(this._groupBomb.getChildren());
 
       if (this._groupBomb.getLength() === 0) {
@@ -84,6 +89,7 @@ export default class Example6 extends Examples {
 
 
 
+  // Crea uno sprite di esplosione temporaneo che si distrugge da solo al termine dell'animazione
   createExplosion(x: number, y: number) {
 
     let _explo: Phaser.GameObjects.Sprite = this.add.sprite(x, y, "explosion");
@@ -97,7 +103,6 @@ export default class Example6 extends Examples {
 
 
   update(time: number, delta: number): void {
-
 
 
     this._tile1.tilePositionY += 0.2; //velocità lenta

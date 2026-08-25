@@ -2,6 +2,7 @@
 import Examples from "./Examples";
 import Player from "../customGameobjects/player/Player"
 
+// Esempio: player custom con controllo camera che lo segue (startFollow) entro i bounds del mondo
 export default class Example30 extends Examples {
 
 
@@ -26,6 +27,7 @@ export default class Example30 extends Examples {
     this.add.image(0, 0, "grid").setOrigin(0).setAlpha(.3);
     this.add.image(1024, 0, "grid").setOrigin(0).setAlpha(.3);
     
+       // tasto "D" per attivare/disattivare il debug grafico della fisica
        this._toggledebug = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.add.text(640, 200, "Press D to toggle debug.\nUse arrows to move the player").setAlign("center").setFontFamily("Roboto").setColor("#ffffff").setStroke("#000000", 6).setFontSize(40).setScrollFactor(0).setOrigin(.5).setDepth(1000)
 
@@ -65,6 +67,7 @@ export default class Example30 extends Examples {
     // il controllo sui tasti
     this._player.update(time, delta);
 
+      // toggle del debug grafico della fisica alla pressione del tasto D
       if (Phaser.Input.Keyboard.JustDown(this._toggledebug)) {
       if (this.physics.world.drawDebug) {
         this.physics.world.drawDebug = false;

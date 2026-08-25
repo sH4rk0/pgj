@@ -20,7 +20,7 @@ export default class Example20 extends Examples {
     super();
   }
 
-
+  //metodo create: qui impostiamo la scena, la camera e i suoi controlli
   create() {
 
     //aggiungiamo 4 sprite alla nostra scena
@@ -29,6 +29,7 @@ export default class Example20 extends Examples {
     this.add.sprite(0, 1024, "grid").setOrigin(0);
     this.add.sprite(1024, 1024, "grid").setOrigin(0);
 
+    //testo istruzioni, ancorato allo schermo con setScrollFactor(0) così non si muove con la camera
     this.add.text(640, 400, "Shake after 2 seconds delay.\nUse arrows to move the camera.").setAlign("center").setFontFamily("Roboto").setColor("#ffffff").setStroke("#000000", 6).setFontSize(40).setScrollFactor(0).setOrigin(.5)
 
     //Settiamo i margini del viewport il doppio della misura del nostro gioco
@@ -63,20 +64,21 @@ export default class Example20 extends Examples {
     //creiamo il controller
     this._controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
 
-
+    //dopo 2 secondi richiamiamo il metodo shake
     this.time.addEvent({ delay: 2000, callback: this.shake, args: [0.05], callbackScope: this })
 
 
   }
 
-
+  //update viene chiamato ogni frame: qui aggiorniamo i controlli della camera
+  //passando il delta time per rendere il movimento indipendente dal framerate
   update(time: number, delta: number): void {
 
     this._controls.update(delta);
 
   }
 
-
+  //effetto "shake": la camera "trema" per la durata indicata, con l'intensità specificata (0-1)
   shake(intensity:number) {
 
     this._mainCamera.shake(
