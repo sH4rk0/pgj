@@ -1,5 +1,8 @@
 import Germ from './Germ';
 
+// Gruppo fisico che gestisce l'intero "esercito" di germi: crea i germi iniziali,
+// rilascia periodicamente nuovi germi e riutilizza (pool) quelli inattivi invece
+// di crearne sempre di nuovi, per ottimizzare le performance.
 export default class Germs extends Phaser.Physics.Arcade.Group
 {
     
@@ -21,6 +24,8 @@ export default class Germs extends Phaser.Physics.Arcade.Group
         ];
     }
 
+    // Crea i 3 germi iniziali con ritardi di inseguimento scaglionati (0/1000/2000ms)
+    // così non partono tutti insieme, e avvia il timer che rilascia un nuovo germe ogni 2s.
     start ()
     {
         let germ1 = new Germ(this.scene, 100, 100, 'germ1', 60);
@@ -38,6 +43,7 @@ export default class Germs extends Phaser.Physics.Arcade.Group
         this.timedEvent = this.scene.time.addEvent({ delay: 2000, callback: this.releaseGerm, callbackScope: this, loop: true });
     }
 
+    // Ferma il rilascio periodico di nuovi germi e blocca tutti i germi attivi (game over)
     stop ()
     {
         this.timedEvent.remove();
@@ -49,6 +55,9 @@ export default class Germs extends Phaser.Physics.Arcade.Group
         });
     }
 
+    // Chiamato periodicamente dal timer: sceglie una posizione e un tipo di germe casuali
+    // e riutilizza un germe inattivo dello stesso tipo se disponibile (pooling), altrimenti
+    // ne crea uno nuovo. Evita di far crescere indefinitamente il numero di sprite in memoria.
     releaseGerm ()
     {
         const x = Phaser.Math.RND.between(0, 800);

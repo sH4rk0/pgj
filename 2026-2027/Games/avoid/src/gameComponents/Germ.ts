@@ -1,5 +1,8 @@
 import GamePlay from "../scenes/GamePlay";
 
+// Nemico del gioco: appare con una dissolvenza, dopo un ritardo casuale inizia a
+// inseguire il player per un tempo limitato (lifespan), poi svanisce e diventa
+// inattivo finché non viene riutilizzato (pooling) dal gruppo Germs.
 export default class Germ extends Phaser.Physics.Arcade.Sprite
 {
     private speed:number;
@@ -26,6 +29,11 @@ export default class Germ extends Phaser.Physics.Arcade.Sprite
         this.target = new Phaser.Math.Vector2();
     }
 
+    // Avvia il ciclo di vita del germe: imposta la hitbox e fa comparire il germe con
+    // una dissolvenza (2s). "hold" mantiene il germe visibile ma fermo per chaseDelay
+    // ms prima di iniziare a inseguire, così i germi non attaccano tutti insieme.
+    // Se chaseDelay non è passato viene generato casualmente e viene riprodotto il suono di comparsa
+    // (comportamento diverso da quando viene chiamato con delay esplicito da Restart).
     Start (chaseDelay:number)
     {
         this.setCircle(14, 6, 2);
@@ -44,6 +52,8 @@ export default class Germ extends Phaser.Physics.Arcade.Sprite
             ease: 'Linear',
             hold: chaseDelay,
             onComplete: () => {
+                // inizia l'inseguimento solo se il player è ancora vivo (evita che germi
+                // "ritardatari" partano dopo un game over)
                 if (this._gamePlay.player.isAlive)
                 {
                     this.lifespan = Phaser.Math.RND.between(6000, 12000);
@@ -55,6 +65,8 @@ export default class Germ extends Phaser.Physics.Arcade.Sprite
         return this;
     }
 
+    // Rimette in gioco (pooling) un germe precedentemente disattivato: lo riposiziona,
+    // lo rende di nuovo attivo/visibile e lo fa ripartire da invisibile (Start(0)).
     Restart (x:number, y:number)
     {
         this.body.reset(x, y);
@@ -66,6 +78,9 @@ export default class Germ extends Phaser.Physics.Arcade.Sprite
         return this.Start(0);
     }
 
+    // Eseguito ad ogni frame: se il germe sta inseguendo, scala il tempo rimanente (lifespan)
+    // e, una volta esaurito, lo ferma e lo fa svanire disattivandolo (pronto per il riutilizzo).
+    // Altrimenti aggiorna direzione/velocità verso il player.
     preUpdate (time:number, delta:number)
     {
         super.preUpdate(time, delta);
@@ -80,6 +95,7 @@ export default class Germ extends Phaser.Physics.Arcade.Sprite
 
                 this.body.stop();
 
+                // dissolvenza in uscita, poi il germe viene disattivato e nascosto (torna nel pool)
                 this.scene.tweens.add({
                     targets: this,
                     alpha: 0,
@@ -94,13 +110,14 @@ export default class Germ extends Phaser.Physics.Arcade.Sprite
             else
             {
                 this._gamePlay.getPlayer(this.target);
-            
+
                 //  Add 90 degrees because the sprite is drawn facing up
                 this.rotation = this.scene.physics.moveToObject(this, this.target, this.speed) + 1.5707963267948966;
             }
         }
     }
 
+    // Interrompe immediatamente l'inseguimento e ferma il corpo fisico (usato al game over)
     Stop ()
     {
         this.isChasing = false;

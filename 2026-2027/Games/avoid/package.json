@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@types/webfontloader": "^1.6.38",
-    "phaser": "^4.0.0",
+    "phaser": "^4.2.1",
     "webfontloader": "^1.6.28"
   }
 }

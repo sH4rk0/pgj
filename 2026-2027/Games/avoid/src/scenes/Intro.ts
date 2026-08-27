@@ -1,3 +1,5 @@
+// Scena di titolo/menu: mostra il logo, dei germi animati che vagano sullo sfondo
+// e attende il click dell'utente per avviare la partita vera e propria (GamePlay).
 export default class Intro extends Phaser.Scene {
 
 
@@ -22,6 +24,8 @@ export default class Intro extends Phaser.Scene {
 
 
   }
+  // Allestisce la schermata di titolo: musica, sfondo, germi decorativi animati,
+  // shader di sfondo e logo, poi registra il click per passare a GamePlay.
   create() {
 
      this.sound.play('music', { loop: true });
@@ -53,18 +57,23 @@ export default class Intro extends Phaser.Scene {
   }
 
 
+  // Crea un germe puramente decorativo (nessuna fisica/collisione) che vaga a caso
+  // dentro "area" muovendosi verso nuovi punti casuali all'infinito (repeat: -1).
+  // Le durate X/Y sono diverse (Y = X + 3000) così i due assi non si muovono in sync
+  // e il movimento risulta più naturale/organico invece che diagonale e prevedibile.
   addGerm (area:any, animation:any)
   {
       let start = area.getRandomPoint();
 
       let germ = this.add.sprite(start.x, start.y,"assets").play(animation).setScale(2);
-      
+
       let durationX = Phaser.Math.Between(4000, 6000);
       let durationY = durationX + 3000;
 
       this.tweens.add({
           targets: germ,
           x: {
+              // ad ogni ciclo del tween sceglie un nuovo punto di arrivo casuale sull'asse X
               getStart: (tween: any, target:any) => {
                   return germ.x;
               },

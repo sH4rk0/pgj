@@ -1,7 +1,9 @@
 //importiamo la classe GameData
 import { GameData } from "../GameData";
-import WebFontFile from '../scenes/webFontFile';
+import WebFont from "webfontloader";
 
+//Scena di caricamento: carica tutti gli asset del gioco (immagini, font, suoni, ecc.)
+//definiti in GameData, mostra una barra di progresso e poi avvia la scena Intro
 export default class Preloader extends Phaser.Scene {
 
   private _loading: Phaser.GameObjects.Text;
@@ -14,12 +16,14 @@ export default class Preloader extends Phaser.Scene {
     });
   }
 
+  //avvia il caricamento degli asset definiti in GameData e prepara la grafica per la barra di progresso
   preload() {
     this.cameras.main.setBackgroundColor(GameData.globals.bgColor);
     this._progress = this.add.graphics();
     this.loadAssets();
   }
 
+  //crea l'immagine e il testo di caricamento (con una dissolvenza in ingresso) mostrati durante il preload
   init() {
     this._image = this.add
       .image(
@@ -42,6 +46,8 @@ export default class Preloader extends Phaser.Scene {
       .setOrigin(0.5, 1).setColor("#000000").setFontSize(40).setFontFamily(GameData.preloader.loadingTextFont);
   }
 
+  //registra i listener del loader (per aggiornare la barra di progresso) e mette in coda
+  //tutte le categorie di asset dichiarate in GameData (font, immagini, suoni, animazioni, ecc.)
   loadAssets(): void {
 
     this.load.on("start", () => { });
@@ -50,6 +56,7 @@ export default class Preloader extends Phaser.Scene {
 
     });
 
+    //aggiorna la barra di progresso e il testo percentuale man mano che gli asset vengono caricati
     this.load.on("progress", (value: number) => {
 
       this._progress.clear();
@@ -58,6 +65,8 @@ export default class Preloader extends Phaser.Scene {
       this._loading.setText(GameData.preloader.loadingText + " " + Math.round(value * 100) + "%");
     });
 
+    //al termine del caricamento attende un click, poi con una dissolvenza in uscita
+    //registra le animazioni dei germi e passa alla scena Intro
     this.load.on("complete", () => {
 
       this._progress.clear();
@@ -72,6 +81,7 @@ export default class Preloader extends Phaser.Scene {
 
 
             //custom code from https://phaser.io/examples/v3.85.0/games/view/avoid-the-germs
+            //definisce le 4 animazioni dei germi (una per colore/frame prefix) usando i fotogrammi 1-3 dell'atlas 'assets'
             this.anims.create({
               key: 'germ1',
               frames: this.anims.generateFrameNames('assets', { prefix: 'red', start: 1, end: 3 }),
@@ -117,13 +127,11 @@ export default class Preloader extends Phaser.Scene {
     //Assets Load
     //--------------------------
 
-    //WEB FONT
-    if (GameData.webfonts != null) {
-      let _fonts: Array<string> = [];
-      GameData.webfonts.forEach((element: FontAsset) => {
-        _fonts.push(element.key);
+    // web fonts (Google Fonts via webfontloader)
+    if (GameData.webfonts != null && GameData.webfonts.length > 0) {
+      WebFont.load({
+        google: { families: GameData.webfonts.map((f: FontAsset) => f.key) },
       });
-      this.load.addFile(new WebFontFile(this.load, _fonts));
     }
 
     //local FONT

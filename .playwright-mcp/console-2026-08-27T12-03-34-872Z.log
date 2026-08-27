@@ -1,0 +1,103 @@
+[    1048ms] [INFO] [webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled. @ http://localhost:9100/vendors.bundle.js:564116
+[    1049ms] [LOG] [HMR] Waiting for update signal from WDS... @ http://localhost:9100/vendors.bundle.js:565584
+[    1312ms] [LOG] %cPhaser v4.2.1 (WebGL | Web Audio)%c https://phaser.io/v4021 color: #ffffff; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAARBJREFUeNpi/P//P0OHsPB/BiCoePuWkYFEwALSXJElzMBgLwE2CNkQxgWr/yMr/p8QimlBu5DQ//+8vBBco/ofzAe6imH+qv/53/6jYJAYSA4ZoxoANYTPKhiuCQZwGcJU+e4dqpMmvsDq14krV2MPAxDha2CMKvoXoiE/PBQUDgQD8j82UFae9B9bOIC8B9UD9gIjjIMN7Ns6lWHn4XMoYu62RgxO3tkMjIyMII2MYAOAtmFVhA+ADHf2ycGMRhANjUq8YO+WKWCvgAORIV8CkpDCrzIwsLIymC1qAtuAD4Bsh3sBmqAY3qcGwL2AC4DCpKtzHlgzOLWihwEuzTCN0GhDJHeYC4gByBphACDAAH2dDIxdjr+VAAAAAElFTkSuQmCC"), linear-gradient(to bottom, #000814, #001d3d, #003566); background-repeat: no-repeat; background-position: 4px center, 0 0; padding: 2px 6px 2px 24px; background: transparent @ http://localhost:9100/vendors.bundle.js:311801
+[   10780ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:9100/assets/icons/icons-512.png:0
+[   13025ms] [WARNING] Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead. @ http://localhost:9100/vendors.bundle.js:342951
+[   13027ms] [WARNING] Phaser.GameObjects.Components.Mask.setMask: This method is not supported in WebGL. Create a Mask filter instead. @ http://localhost:9100/vendors.bundle.js:342951
+[  254585ms] [INFO] [webpack-dev-server] App updated. Recompiling... @ http://localhost:9100/vendors.bundle.js:564116
+[  256463ms] [INFO] [webpack-dev-server] App hot update... @ http://localhost:9100/vendors.bundle.js:564116
+[  256463ms] [LOG] [HMR] Checking for updates on the server... @ http://localhost:9100/vendors.bundle.js:565584
+[  256543ms] [WARNING] [HMR] Cannot apply update. Need to do a full reload! @ http://localhost:9100/vendors.bundle.js:565586
+[  256543ms] [WARNING] [HMR] Error: Aborted because ./src/gameComponents/others/Credits.ts is not accepted
+Update propagation: ./src/gameComponents/others/Credits.ts -> ./src/scenes/Menu.ts -> ./src/index.ts
+    at applyHandler (http://localhost:9100/runtime.bundle.js:957:31)
+    at http://localhost:9100/runtime.bundle.js:540:21
+    at Array.map (<anonymous>)
+    at internalApply (http://localhost:9100/runtime.bundle.js:539:15)
+    at http://localhost:9100/runtime.bundle.js:508:26
+    at waitForBlockingPromises (http://localhost:9100/runtime.bundle.js:459:48)
+    at http://localhost:9100/runtime.bundle.js:506:24 @ http://localhost:9100/vendors.bundle.js:565586
+[  258166ms] [INFO] [webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled. @ http://localhost:9100/vendors.bundle.js:564116
+[  258168ms] [LOG] [HMR] Waiting for update signal from WDS... @ http://localhost:9100/vendors.bundle.js:565584
+[  258479ms] [LOG] %cPhaser v4.2.1 (WebGL | Web Audio)%c https://phaser.io/v4021 color: #ffffff; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAARBJREFUeNpi/P//P0OHsPB/BiCoePuWkYFEwALSXJElzMBgLwE2CNkQxgWr/yMr/p8QimlBu5DQ//+8vBBco/ofzAe6imH+qv/53/6jYJAYSA4ZoxoANYTPKhiuCQZwGcJU+e4dqpMmvsDq14krV2MPAxDha2CMKvoXoiE/PBQUDgQD8j82UFae9B9bOIC8B9UD9gIjjIMN7Ns6lWHn4XMoYu62RgxO3tkMjIyMII2MYAOAtmFVhA+ADHf2ycGMRhANjUq8YO+WKWCvgAORIV8CkpDCrzIwsLIymC1qAtuAD4Bsh3sBmqAY3qcGwL2AC4DCpKtzHlgzOLWihwEuzTCN0GhDJHeYC4gByBphACDAAH2dDIxdjr+VAAAAAElFTkSuQmCC"), linear-gradient(to bottom, #000814, #001d3d, #003566); background-repeat: no-repeat; background-position: 4px center, 0 0; padding: 2px 6px 2px 24px; background: transparent @ http://localhost:9100/vendors.bundle.js:311801
+[  471808ms] [INFO] [webpack-dev-server] App updated. Recompiling... @ http://localhost:9100/vendors.bundle.js:564116
+[  474265ms] [ERROR] [webpack-dev-server] Errors while compiling. Reload prevented. @ http://localhost:9100/vendors.bundle.js:564124
+[  474266ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 53:26-36
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(53,27)
+      TS2304: Cannot find name 'BBCodeText'. @ http://localhost:9100/vendors.bundle.js:564124
+[  474266ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 105:32-42
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(105,33)
+      TS2304: Cannot find name 'BBCodeText'. @ http://localhost:9100/vendors.bundle.js:564124
+[  479517ms] [INFO] [webpack-dev-server] App updated. Recompiling... @ http://localhost:9100/vendors.bundle.js:564116
+[  480933ms] [ERROR] [webpack-dev-server] Errors while compiling. Reload prevented. @ http://localhost:9100/vendors.bundle.js:564124
+[  480934ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 105:13-25
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(105,14)
+      TS2339: Property '_textContent' does not exist on type 'Credits'. @ http://localhost:9100/vendors.bundle.js:564124
+[  480934ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 105:32-42
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(105,33)
+      TS2304: Cannot find name 'BBCodeText'. @ http://localhost:9100/vendors.bundle.js:564124
+[  480935ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 112:38-50
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(112,39)
+      TS2339: Property '_textContent' does not exist on type 'Credits'. @ http://localhost:9100/vendors.bundle.js:564124
+[  480935ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 115:22-34
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(115,23)
+      TS2339: Property '_textContent' does not exist on type 'Credits'. @ http://localhost:9100/vendors.bundle.js:564124
+[  480935ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 116:31-43
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(116,32)
+      TS2339: Property '_textContent' does not exist on type 'Credits'. @ http://localhost:9100/vendors.bundle.js:564124
+[  480936ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 187:13-25
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(187,14)
+      TS2339: Property '_textContent' does not exist on type 'Credits'. @ http://localhost:9100/vendors.bundle.js:564124
+[  491520ms] [INFO] [webpack-dev-server] App updated. Recompiling... @ http://localhost:9100/vendors.bundle.js:564116
+[  493658ms] [ERROR] [webpack-dev-server] Errors while compiling. Reload prevented. @ http://localhost:9100/vendors.bundle.js:564124
+[  493659ms] [ERROR] [webpack-dev-server] ERROR in ./src/gameComponents/others/Credits.ts (C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts) 225:13-25
+[tsl] ERROR in C:\Users\francesco.raimondo\Documents\phaser\pgj-1\2026-2027\Games\cialtroni\src\gameComponents\others\Credits.ts(225,14)
+      TS2339: Property '_textContent' does not exist on type 'Credits'. @ http://localhost:9100/vendors.bundle.js:564124
+[  500259ms] [INFO] [webpack-dev-server] App updated. Recompiling... @ http://localhost:9100/vendors.bundle.js:564116
+[  502066ms] [INFO] [webpack-dev-server] App hot update... @ http://localhost:9100/vendors.bundle.js:564116
+[  502066ms] [LOG] [HMR] Checking for updates on the server... @ http://localhost:9100/vendors.bundle.js:565584
+[  502149ms] [WARNING] [HMR] Cannot apply update. Need to do a full reload! @ http://localhost:9100/vendors.bundle.js:565586
+[  502150ms] [WARNING] [HMR] Error: Aborted because ./src/gameComponents/others/Credits.ts is not accepted
+Update propagation: ./src/gameComponents/others/Credits.ts -> ./src/scenes/Menu.ts -> ./src/index.ts
+    at applyHandler (http://localhost:9100/runtime.bundle.js:957:31)
+    at http://localhost:9100/runtime.bundle.js:540:21
+    at Array.map (<anonymous>)
+    at internalApply (http://localhost:9100/runtime.bundle.js:539:15)
+    at http://localhost:9100/runtime.bundle.js:508:26
+    at waitForBlockingPromises (http://localhost:9100/runtime.bundle.js:459:48)
+    at http://localhost:9100/runtime.bundle.js:506:24 @ http://localhost:9100/vendors.bundle.js:565586
+[  503208ms] [INFO] [webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled. @ http://localhost:9100/vendors.bundle.js:289324
+[  503210ms] [LOG] [HMR] Waiting for update signal from WDS... @ http://localhost:9100/vendors.bundle.js:290792
+[  504100ms] [LOG] %cPhaser v4.2.1 (WebGL | Web Audio)%c https://phaser.io/v4021 color: #ffffff; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAARBJREFUeNpi/P//P0OHsPB/BiCoePuWkYFEwALSXJElzMBgLwE2CNkQxgWr/yMr/p8QimlBu5DQ//+8vBBco/ofzAe6imH+qv/53/6jYJAYSA4ZoxoANYTPKhiuCQZwGcJU+e4dqpMmvsDq14krV2MPAxDha2CMKvoXoiE/PBQUDgQD8j82UFae9B9bOIC8B9UD9gIjjIMN7Ns6lWHn4XMoYu62RgxO3tkMjIyMII2MYAOAtmFVhA+ADHf2ycGMRhANjUq8YO+WKWCvgAORIV8CkpDCrzIwsLIymC1qAtuAD4Bsh3sBmqAY3qcGwL2AC4DCpKtzHlgzOLWihwEuzTCN0GhDJHeYC4gByBphACDAAH2dDIxdjr+VAAAAAElFTkSuQmCC"), linear-gradient(to bottom, #000814, #001d3d, #003566); background-repeat: no-repeat; background-position: 4px center, 0 0; padding: 2px 6px 2px 24px; background: transparent @ http://localhost:9100/vendors.bundle.js:37009
+[  792150ms] [INFO] [webpack-dev-server] App updated. Recompiling... @ http://localhost:9100/vendors.bundle.js:289324
+[  793235ms] [INFO] [webpack-dev-server] App hot update... @ http://localhost:9100/vendors.bundle.js:289324
+[  793235ms] [LOG] [HMR] Checking for updates on the server... @ http://localhost:9100/vendors.bundle.js:290792
+[  793284ms] [WARNING] [HMR] Cannot apply update. Need to do a full reload! @ http://localhost:9100/vendors.bundle.js:290794
+[  793284ms] [WARNING] [HMR] Error: Aborted because ./src/gameComponents/ui/SimpleScrollablePanel.ts is not accepted
+Update propagation: ./src/gameComponents/ui/SimpleScrollablePanel.ts -> ./src/gameComponents/others/HowToPlay.ts -> ./src/scenes/Menu.ts -> ./src/index.ts
+    at applyHandler (http://localhost:9100/runtime.bundle.js:957:31)
+    at http://localhost:9100/runtime.bundle.js:540:21
+    at Array.map (<anonymous>)
+    at internalApply (http://localhost:9100/runtime.bundle.js:539:15)
+    at http://localhost:9100/runtime.bundle.js:508:26
+    at waitForBlockingPromises (http://localhost:9100/runtime.bundle.js:459:48)
+    at http://localhost:9100/runtime.bundle.js:506:24 @ http://localhost:9100/vendors.bundle.js:290794
+[  794178ms] [INFO] [webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled. @ http://localhost:9100/vendors.bundle.js:289324
+[  794179ms] [LOG] [HMR] Waiting for update signal from WDS... @ http://localhost:9100/vendors.bundle.js:290792
+[  794444ms] [LOG] %cPhaser v4.2.1 (WebGL | Web Audio)%c https://phaser.io/v4021 color: #ffffff; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAARBJREFUeNpi/P//P0OHsPB/BiCoePuWkYFEwALSXJElzMBgLwE2CNkQxgWr/yMr/p8QimlBu5DQ//+8vBBco/ofzAe6imH+qv/53/6jYJAYSA4ZoxoANYTPKhiuCQZwGcJU+e4dqpMmvsDq14krV2MPAxDha2CMKvoXoiE/PBQUDgQD8j82UFae9B9bOIC8B9UD9gIjjIMN7Ns6lWHn4XMoYu62RgxO3tkMjIyMII2MYAOAtmFVhA+ADHf2ycGMRhANjUq8YO+WKWCvgAORIV8CkpDCrzIwsLIymC1qAtuAD4Bsh3sBmqAY3qcGwL2AC4DCpKtzHlgzOLWihwEuzTCN0GhDJHeYC4gByBphACDAAH2dDIxdjr+VAAAAAElFTkSuQmCC"), linear-gradient(to bottom, #000814, #001d3d, #003566); background-repeat: no-repeat; background-position: 4px center, 0 0; padding: 2px 6px 2px 24px; background: transparent @ http://localhost:9100/vendors.bundle.js:37009
+[  801945ms] [INFO] [webpack-dev-server] App updated. Recompiling... @ http://localhost:9100/vendors.bundle.js:289324
+[  803033ms] [INFO] [webpack-dev-server] App hot update... @ http://localhost:9100/vendors.bundle.js:289324
+[  803033ms] [LOG] [HMR] Checking for updates on the server... @ http://localhost:9100/vendors.bundle.js:290792
+[  803087ms] [WARNING] [HMR] Cannot apply update. Need to do a full reload! @ http://localhost:9100/vendors.bundle.js:290794
+[  803087ms] [WARNING] [HMR] Error: Aborted because ./src/gameComponents/ui/SimpleScrollablePanel.ts is not accepted
+Update propagation: ./src/gameComponents/ui/SimpleScrollablePanel.ts -> ./src/gameComponents/others/HowToPlay.ts -> ./src/scenes/Menu.ts -> ./src/index.ts
+    at applyHandler (http://localhost:9100/runtime.bundle.js:957:31)
+    at http://localhost:9100/runtime.bundle.js:540:21
+    at Array.map (<anonymous>)
+    at internalApply (http://localhost:9100/runtime.bundle.js:539:15)
+    at http://localhost:9100/runtime.bundle.js:508:26
+    at waitForBlockingPromises (http://localhost:9100/runtime.bundle.js:459:48)
+    at http://localhost:9100/runtime.bundle.js:506:24 @ http://localhost:9100/vendors.bundle.js:290794
+[  804705ms] [INFO] [webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled. @ http://localhost:9100/vendors.bundle.js:289324
+[  804707ms] [LOG] [HMR] Waiting for update signal from WDS... @ http://localhost:9100/vendors.bundle.js:290792
+[  804871ms] [LOG] %cPhaser v4.2.1 (WebGL | Web Audio)%c https://phaser.io/v4021 color: #ffffff; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAARBJREFUeNpi/P//P0OHsPB/BiCoePuWkYFEwALSXJElzMBgLwE2CNkQxgWr/yMr/p8QimlBu5DQ//+8vBBco/ofzAe6imH+qv/53/6jYJAYSA4ZoxoANYTPKhiuCQZwGcJU+e4dqpMmvsDq14krV2MPAxDha2CMKvoXoiE/PBQUDgQD8j82UFae9B9bOIC8B9UD9gIjjIMN7Ns6lWHn4XMoYu62RgxO3tkMjIyMII2MYAOAtmFVhA+ADHf2ycGMRhANjUq8YO+WKWCvgAORIV8CkpDCrzIwsLIymC1qAtuAD4Bsh3sBmqAY3qcGwL2AC4DCpKtzHlgzOLWihwEuzTCN0GhDJHeYC4gByBphACDAAH2dDIxdjr+VAAAAAElFTkSuQmCC"), linear-gradient(to bottom, #000814, #001d3d, #003566); background-repeat: no-repeat; background-position: 4px center, 0 0; padding: 2px 6px 2px 24px; background: transparent @ http://localhost:9100/vendors.bundle.js:37009

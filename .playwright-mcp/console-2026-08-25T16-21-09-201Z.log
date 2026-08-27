@@ -1,0 +1,16 @@
+[     571ms] [INFO] [webpack-dev-server] Server started: Hot Module Replacement enabled, Live Reloading enabled, Progress disabled, Overlay enabled. @ http://localhost:9100/vendors.bundle.js:300894
+[     571ms] [LOG] [HMR] Waiting for update signal from WDS... @ http://localhost:9100/vendors.bundle.js:302362
+[     617ms] [LOG] %cPhaser v4.2.1 (WebGL | Web Audio)%c https://phaser.io/v4021 color: #ffffff; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAARBJREFUeNpi/P//P0OHsPB/BiCoePuWkYFEwALSXJElzMBgLwE2CNkQxgWr/yMr/p8QimlBu5DQ//+8vBBco/ofzAe6imH+qv/53/6jYJAYSA4ZoxoANYTPKhiuCQZwGcJU+e4dqpMmvsDq14krV2MPAxDha2CMKvoXoiE/PBQUDgQD8j82UFae9B9bOIC8B9UD9gIjjIMN7Ns6lWHn4XMoYu62RgxO3tkMjIyMII2MYAOAtmFVhA+ADHf2ycGMRhANjUq8YO+WKWCvgAORIV8CkpDCrzIwsLIymC1qAtuAD4Bsh3sBmqAY3qcGwL2AC4DCpKtzHlgzOLWihwEuzTCN0GhDJHeYC4gByBphACDAAH2dDIxdjr+VAAAAAElFTkSuQmCC"), linear-gradient(to bottom, #000814, #001d3d, #003566); background-repeat: no-repeat; background-position: 4px center, 0 0; padding: 2px 6px 2px 24px; background: transparent @ http://localhost:9100/vendors.bundle.js:48579
+[    8398ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:9100/assets/icons/icons-512.png:0
+[   22247ms] [ERROR] [2026-08-25T16:21:31.447Z]  @firebase/database: FIREBASE FATAL ERROR: Can't determine Firebase Database URL. Be sure to include  a Project ID when calling firebase.initializeApp().  @ http://localhost:9100/vendors.bundle.js:27407
+[   22255ms] Error: FIREBASE FATAL ERROR: Can't determine Firebase Database URL. Be sure to include  a Project ID when calling firebase.initializeApp(). 
+    at fatal (http://localhost:9100/vendors.bundle.js:13551:11)
+    at repoManagerDatabaseFromApp (http://localhost:9100/vendors.bundle.js:26746:13)
+    at Component.instanceFactory (http://localhost:9100/vendors.bundle.js:27018:16)
+    at Provider.getOrInitializeService (http://localhost:9100/vendors.bundle.js:13106:39)
+    at Provider.getImmediate (http://localhost:9100/vendors.bundle.js:12944:29)
+    at getDatabase (http://localhost:9100/vendors.bundle.js:26893:52)
+    at new Leaderboard (http://localhost:9100/index.bundle.js:9517:55)
+    at Intro.create (http://localhost:9100/index.bundle.js:8938:29)
+    at SceneManager.create (http://localhost:9100/vendors.bundle.js:247942:26)
+    at SceneManager.loadComplete (http://localhost:9100/vendors.bundle.js:247849:14)

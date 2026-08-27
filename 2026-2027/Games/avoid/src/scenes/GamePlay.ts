@@ -4,6 +4,8 @@ import Germ from "../gameComponents/Germ";
 import Pickups  from "../gameComponents/Pickups";
 import Player  from "../gameComponents/Player";
 
+// Scena principale di gioco: gestisce player, germi e pickup, il punteggio,
+// le collisioni e il flusso di game over / nuovo record.
 export default class GamePlay extends Phaser.Scene {
 
 
@@ -38,6 +40,9 @@ export default class GamePlay extends Phaser.Scene {
     
   }
 
+  // Inizializza la partita: crea player, gruppi di germi/pickup, HUD e i listener
+  // di collisione/input. Il gioco resta in pausa (player e germi fermi) finché
+  // l'utente non fa il primo click, così può leggere il messaggio introduttivo.
   create ()
     {
         this.score = 0;
@@ -58,6 +63,8 @@ export default class GamePlay extends Phaser.Scene {
 
         this.pickups.start();
 
+        // Il primo click avvia realmente la partita: player e germi iniziano a muoversi
+        // e il testo introduttivo sparisce con una dissolvenza
         this.input.once('pointerdown', () => {
 
             this.player.start();
@@ -77,6 +84,8 @@ export default class GamePlay extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.germs, (player:any, germ:any) => this.playerHitGerm(player, germ));
     }
 
+    // Callback di collisione player-germe: termina la partita solo se il germe
+    // è pienamente visibile (alpha 1), per evitare hit "ingiusti" durante il fade in/out.
     playerHitGerm (player:Player, germ:Germ)
     {
         //  We don't count a hit if the germ is fading in or out
@@ -86,6 +95,8 @@ export default class GamePlay extends Phaser.Scene {
         }
     }
 
+    // Callback di collisione player-pickup: incrementa il punteggio, aggiorna l'HUD
+    // e gestisce il suono (record vs pickup normale) in base al punteggio raggiunto.
     playerHitPickup (player:Player, pickup:Pickups)
     {
         this.score++;
@@ -114,6 +125,8 @@ export default class GamePlay extends Phaser.Scene {
         this.pickups.collect(pickup);
     }
 
+    // Gestisce la fine della partita: ferma player e germi, salva l'eventuale
+    // nuovo record e attende un click per tornare alla scena Intro.
     gameOver ()
     {
         this.player.kill();
@@ -140,6 +153,8 @@ export default class GamePlay extends Phaser.Scene {
         });
     }
 
+    // Copia la posizione corrente del player nell'oggetto target passato
+    // (usato dai germi per calcolare la direzione di inseguimento)
     getPlayer (target:any)
     {
         target.x = this.player.x;

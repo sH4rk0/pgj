@@ -1,7 +1,8 @@
 //viene importato un riferimento a gamedata per poter usare le variabili globali
 import { GameData } from "../GameData";
 
-//creiamo la classe Boot che estende Phaser.Scene
+//Scena di avvio: primissima scena eseguita dal gioco, carica il minimo indispensabile
+//(logo Phaser) e passa subito la mano alla scena Preloader che caricherà gli asset veri
 export default class Boot extends Phaser.Scene {
 
 
@@ -46,6 +47,7 @@ export default class Boot extends Phaser.Scene {
 
   }
 
+  //non utilizzato in questa scena (Boot passa subito a Preloader in create)
   update(time: number, delta: number): void {
 
     //this._text.angle += 1;

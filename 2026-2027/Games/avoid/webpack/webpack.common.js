@@ -101,9 +101,13 @@ module.exports = {
   
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/assets', to: 'assets' },
-        { from: 'src/pwa', to: '' },
-        { from: 'src/favicon.ico', to: '' }
+        // `info: { minimized: true }` tells webpack's Terser step that these
+        // are already-final static assets (not JS bundle output), so it
+        // won't try to parse/minify files like assets/shaders/goo.glsl.js
+        // (raw GLSL source with a .js extension) as JavaScript.
+        { from: 'src/assets', to: 'assets', info: { minimized: true } },
+        { from: 'src/pwa', to: '', info: { minimized: true } },
+        { from: 'src/favicon.ico', to: '', info: { minimized: true } }
       ]
     }),
 
