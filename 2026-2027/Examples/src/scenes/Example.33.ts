@@ -39,6 +39,9 @@ export default class Example33 extends Examples {
   private _gameCompleted: boolean = false;
   private _levelText: Phaser.GameObjects.Text;
 
+   // tasto per attivare/disattivare la visualizzazione del debug fisico
+   private _toggledebug: Phaser.Input.Keyboard.Key;
+
   constructor() {
     super();
   }
@@ -51,10 +54,16 @@ export default class Example33 extends Examples {
     this._groupEnemy = this.add.group({ runChildUpdate: true });
     this._mainCamera.setBackgroundColor(0x000000);
 
+       // tasto "D" per attivare/disattivare il debug grafico della fisica
+    this._toggledebug = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    // testo istruzioni fisso a schermo con i comandi di base del livello
+    this.add.text(640, 700, "Press D to toggle debug.\nArrows to move, get coins, avoid enemies, find the exit").setAlign("center").setFontFamily("Roboto").setColor("#ffffff").setStroke("#000000", 6).setFontSize(30).setScrollFactor(0).setOrigin(.5).setDepth(1000)
+
+
     // sfondi in parallax fissati sullo schermo (setScrollFactor(0)), aggiornati in update()
     this._bg = this.add.tileSprite(0, 0, 1280, 800, "bg1").setOrigin(0, 0).setDepth(0).setScrollFactor(0);
-    this._bg2 = this.add.tileSprite(0, 250, 1280, 450, "bg3").setOrigin(0, 0).setDepth(0).setScrollFactor(0);
-    this._bg3 = this.add.tileSprite(0, 250, 1280, 450, "bg4").setOrigin(0, 0).setDepth(0).setScrollFactor(0);
+    this._bg2 = this.add.tileSprite(0, 300, 1280, 450, "bg3").setOrigin(0, 0).setDepth(0).setScrollFactor(0);
+    this._bg3 = this.add.tileSprite(0, 300, 1280, 450, "bg4").setOrigin(0, 0).setDepth(0).setScrollFactor(0);
 
     this._text = this.add.text(0, 0, "")
       .setScrollFactor(0)
@@ -63,7 +72,7 @@ export default class Example33 extends Examples {
       .setStroke("#ff0000", 5)
       .setDepth(100);
 
-    this._levelText = this.add.text(640, 400, "Usa le freccette per muoverti e saltare")
+    this._levelText = this.add.text(640, 400, "")
       .setFontFamily("Roboto").setFontSize(30).setColor("#ffffff").setStroke("#000000", 6)
       .setScrollFactor(0).setOrigin(.5).setDepth(1000);
 
@@ -85,11 +94,26 @@ export default class Example33 extends Examples {
     this.time.delayedCall(4000, () => this._levelText.destroy());
   }
 
-  // il player perde e riparte dal respawn point quando tocca un nemico
+  // il player perde e riparte dal respawn point quando tocca un nemico,
+  // a meno che non gli salti sopra: in quel caso il nemico viene distrutto e il player rimbalza
   hitPlayer(player: any, enemy: any) {
+    const _player: any = player;
     const _enemy: Enemy = <Enemy>enemy;
-    _enemy.destroy();
-    this._player.setPosition(this._respawnPoint.x, this._respawnPoint.y);
+    const _playerBody: Phaser.Physics.Arcade.Body = _player.body;
+    const _enemyBody: Phaser.Physics.Arcade.Body = _enemy.body as Phaser.Physics.Arcade.Body;
+
+    // se il player sta scendendo (velocityY > 0) ed è sopra il nemico, considero il colpo "in salto"
+    const _isJumpingOnEnemy: boolean = _playerBody.velocity.y > 0
+      && _playerBody.bottom <= _enemyBody.top + 10;
+
+    if (_isJumpingOnEnemy) {
+      // il player rimbalza e il nemico viene distrutto, senza subire danno/respawn
+      this.removeEnemy(_enemy);
+      _playerBody.setVelocityY(-300);
+    } else {
+      _enemy.destroy();
+      this._player.setPosition(this._respawnPoint.x, this._respawnPoint.y);
+    }
   }
 
   followPlayer() {
@@ -176,6 +200,16 @@ export default class Example33 extends Examples {
       .setAlpha(0);
 
     this.layer3.setCollisionByProperty({ collide: true });
+
+    // tile "start" del layer3: posiziona player e imposta primo respawn
+    const _startTile: Phaser.Tilemaps.Tile = this.layer3.findTile(
+      (tile: Phaser.Tilemaps.Tile) => tile.properties.start == true
+    );
+
+    if (_startTile != null) {
+      this._respawnPoint = new Phaser.Math.Vector2(_startTile.pixelX, _startTile.pixelY);
+      this._player.setPosition(this._respawnPoint.x, this._respawnPoint.y);
+    }
 
     // quarto layer: collisione/overlap dei soli nemici con tile speciali
     this.layer4 = <Phaser.Tilemaps.TilemapLayer>this.map
@@ -273,7 +307,7 @@ export default class Example33 extends Examples {
   // mostra il messaggio di livello completato senza cambiare scena, per non
   // interferire con il flusso di navigazione del menu degli esempi
   showLevelCompleted(): void {
-    this.add.text(this._mainCamera.width / 2, this._mainCamera.height / 2, "Livello completato!")
+    this.add.text(this._mainCamera.width / 2, this._mainCamera.height / 2, "Level completed!")
       .setFontFamily("Roboto").setFontSize(50).setColor("#ffffff").setStroke("#000000", 8)
       .setScrollFactor(0).setOrigin(.5).setDepth(1000);
   }
@@ -286,6 +320,22 @@ export default class Example33 extends Examples {
       this._bg.tilePositionX = this._mainCamera.scrollX * .05;
       this._bg2.tilePositionX = this._mainCamera.scrollX * .07;
       this._bg3.tilePositionX = this._mainCamera.scrollX * .15;
+
+      // scorrimento verticale in parallax basato sulla posizione Y del player,
+      // altrimenti bg2/bg3 sembrerebbero fissi quando il player sale/scende
+      this._bg2.tilePositionY = this._mainCamera.scrollY * .27;
+      this._bg3.tilePositionY =  this._mainCamera.scrollY * .35;
+    }
+
+     // toggle del debug grafico della fisica alla pressione del tasto D
+    if (Phaser.Input.Keyboard.JustDown(this._toggledebug)) {
+      if (this.physics.world.drawDebug) {
+        this.physics.world.drawDebug = false;
+        this.physics.world.debugGraphic.clear();
+      }
+      else {
+        this.physics.world.drawDebug = true;
+      }
     }
   }
 
