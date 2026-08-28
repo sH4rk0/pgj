@@ -176,6 +176,7 @@ export let GameData: gameData = {
     { name: "thumb-29", path: "assets/images/hud/thumbs/29.jpg" },
     { name: "thumb-30", path: "assets/images/hud/thumbs/30.jpg" },
     { name: "thumb-31", path: "assets/images/hud/thumbs/31.jpg" },
+     { name: "thumb-32", path: "assets/images/hud/thumbs/32.jpg" },
 
 
 
