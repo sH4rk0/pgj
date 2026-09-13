@@ -1,5 +1,0 @@
-{
-    "git.ignoreLimitWarning": true,
-    "claudeCode.allowDangerouslySkipPermissions": true,
-    "claudeCode.initialPermissionMode": "bypassPermissions",
-}
