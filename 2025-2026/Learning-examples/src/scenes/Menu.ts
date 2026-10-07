@@ -35,7 +35,6 @@ import Example34 from "./Example.34";
 import Example35 from "./Example.35";
 import Example36 from "./Example.36";
 import Example37 from "./Example.37";
-
 import Examples from "./Examples";
 import ExamplesHUD from "./ExamplesHUD";
 import ExamplesScene from "./ExamplesScene";
@@ -89,7 +88,7 @@ export default class Menu extends Phaser.Scene {
 
         { name: "Scene com 3", type: Example16, title: "This is example 16", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2025-2026/Learning-examples/src/scenes/Example.16.ts", labsUrl: "https://labs.phaser.io/3.86/index.html?dir=scenes/&q=" , thumb:"thumb-15"},
 
-        { name: "Hello camera", type: Example17, title: "This is example 17", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2025-2026/Learning-examples/src/scenes/Example.17.ts", labsUrl: "https://labs.phaser.io/?path=camera" , thumb:"thumb-16"},
+        { name: "Hello camera", type: Example17, title: "This is example 17", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2025-2026/Learning-examples/src/scenes/Example.17.ts", labsUrl: "https://labs.phaser.io/3.86/index.html?dir=camera/&q=" , thumb:"thumb-16"},
 
         { name: "Camera ZOOM", type: Example18, title: "This is example 18", gitUrl: "https://github.com/sH4rk0/pgj/blob/main/2025-2026/Learning-examples/src/scenes/Example.18.ts", labsUrl: "https://labs.phaser.io/3.86/index.html?dir=camera/&q=" , thumb:"thumb-17"},
 

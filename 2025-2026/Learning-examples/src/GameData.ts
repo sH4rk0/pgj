@@ -8,7 +8,7 @@ export let GameData: gameData = {
 
   preloader: {
     bgColor: "ffffff",
-    image: "phaser4",
+    image: "phaser3",
     imageX: 1280 / 2,
     imageY: 800 / 2,
     loadingText: "Loading...",
